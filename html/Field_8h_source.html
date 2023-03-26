@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.3"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Projet de Florine Lefer &amp; Corentin Petitcolin &amp; Charles Rigaud:  Fichier source de Field.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
+  <td id="projectalign">
+   <div id="projectname">Projet de Florine Lefer &amp; Corentin Petitcolin &amp; Charles Rigaud
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.3 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Field.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#ifndef _FIELD_H</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#define _FIELD_H</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;sstream&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;PieceFactory.h&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">using namespace </span>std;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classField.html">   25</a></span><span class="keyword">class </span><a class="code hl_class" href="classField.html">Field</a></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>{</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <a class="code hl_function" href="classField.html#ab9a718764e88cb90d8b8671f02b782da">Field</a>(vector&lt;int&gt; dimensions, <a class="code hl_class" href="classPieceFactory.html">PieceFactory</a> factory);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <a class="code hl_function" href="classField.html#ab9a718764e88cb90d8b8671f02b782da">Field</a>(<a class="code hl_class" href="classField.html">Field</a> &amp;other);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  <a class="code hl_function" href="classField.html#a45d6e6d09b8f8e46de62b40119d62c60">~Field</a>();</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <a class="code hl_class" href="classField.html">Field</a> &amp;<a class="code hl_function" href="classField.html#a7266972786aa8e46ce95f05d1d708ffc">operator=</a>(<a class="code hl_class" href="classField.html">Field</a> &amp;other);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classField.html#af161d3ccf57a981655774a38a36d950a">   40</a></span>  <span class="keyword">inline</span> <span class="keywordtype">string</span> <a class="code hl_function" href="classField.html#af161d3ccf57a981655774a38a36d950a">getName</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> <span class="stringliteral">&quot;Field&quot;</span>;};</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classField.html#a3f60d2ee3560f8fe89ea8a0788f9edb1">   42</a></span>  <span class="keyword">inline</span> <span class="keyword">const</span> vector&lt;int&gt; <a class="code hl_function" href="classField.html#a3f60d2ee3560f8fe89ea8a0788f9edb1">GetDimensions</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> this-&gt;dimensions;};</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classField.html#ad75e37f3eec0b65b4b6cafcd7ca5ed8a">SetDimensions</a>(vector&lt;int&gt; dimensions);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classField.html#aa74a5d280a0501a313f11697000f354b">Left</a>();</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classField.html#a6f7450cf6501f6b2b475a389d79aa3d2">Right</a>();</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classField.html#a15e0861827b085f67d20ea7c5abe08f9">Forward</a>();</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classField.html#ad1c5aba0472c1d07e0e8929106f001c4">Backward</a>();</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classField.html#a8148e1c045fd27ae4892f0a6204d2d4c">RotateCW</a>();</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classField.html#ac15287eb422280279dba1e1be290c2f8">RotateCCW</a>();</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classField.html#a2c362cfcc8e48a318639b3b7f36a7533">RotateForward</a>();</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classField.html#a9338bc1641c711f618c1ef18b5d58618">RotateBackward</a>();</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="classField.html#a7ef13d30688e57f6b837d05b8d01b4f8">   62</a></span>  <span class="keyword">inline</span> <span class="keyword">const</span> vector&lt;Position&gt; <a class="code hl_function" href="classField.html#a7ef13d30688e57f6b837d05b8d01b4f8">ActivePiecePositions</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> this-&gt;active-&gt;<a class="code hl_function" href="classPiece.html#abf5e6529e7fd4adf7c628e21a3b1853e">Positions</a>();};</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classField.html#a418724345703cef57d00460809680227">SetLevel</a>(<span class="keywordtype">int</span> level);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classField.html#a1f1f55ba45abb295ddf0df893625a3a0">   66</a></span>  <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classField.html#a1f1f55ba45abb295ddf0df893625a3a0">GetLevel</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> this-&gt;level;};</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classField.html#adb38a3b758427a497a43530248476765">   68</a></span>  <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classField.html#adb38a3b758427a497a43530248476765">GetScore</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> this-&gt;score;};</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="classField.html#a705f283f478cb28cc9f6cd0ceaeff7dd">   70</a></span>  <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classField.html#a705f283f478cb28cc9f6cd0ceaeff7dd">IsGameOver</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> this-&gt;isover;};</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classField.html#aa0d2a42df398cb284aded394edd765ca">Reset</a>();</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classField.html#a7f9ba7e28ecf2c7efcc64a0358ac6d8e">Start</a>();</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classField.html#ae4af2c40ea56731b0df585a380930d05">Update</a>();</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>  </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  <span class="keywordtype">bool</span> CheckValidity() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  <span class="keywordtype">bool</span> IsFilled(<span class="keywordtype">int</span> n) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>  vector&lt;int&gt; dimensions;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>  <span class="keywordtype">int</span> floor_size;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>  vector&lt;bool&gt; grid;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>  <a class="code hl_class" href="classPiece.html">Piece</a> *active;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>  <a class="code hl_class" href="classPieceFactory.html">PieceFactory</a> factory;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  <span class="keywordtype">int</span> level;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>  <span class="keywordtype">int</span> score;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>  <span class="keywordtype">bool</span> isover;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>  <span class="comment">// Cette methode n&#39;est la que pour la phase de mise au point, afin de pouvoir visualiser le contenu de la grille</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>  <span class="keywordtype">void</span> Print()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i=this-&gt;dimensions[0]-1 ; i&gt;=0 ; i--) {</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j=0 ; j&lt;this-&gt;dimensions[1] ; j++) {</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keywordflow">if</span> (this-&gt;active != NULL) {</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>      <a class="code hl_struct" href="structPosition.html">Position</a> p;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>      p.x = i; p.y = j; p.z = 0;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>      vector&lt;Position&gt; v = this-&gt;active-&gt;<a class="code hl_function" href="classPiece.html#abf5e6529e7fd4adf7c628e21a3b1853e">Positions</a>();</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>      <span class="keywordtype">size_t</span> i;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>      <span class="keywordflow">for</span> (i=0 ; i&lt;v.size() ; i++)</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        <span class="keywordflow">if</span> (p.x == v[i].x &amp;&amp; p.y == v[i].y &amp;&amp; p.z == v[i].z) {</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>          cout &lt;&lt; <span class="stringliteral">&quot; o&quot;</span>;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>          <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        }</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>      <span class="keywordflow">if</span> (i &lt; v.size())</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    }</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    cout &lt;&lt; (this-&gt;grid[i*this-&gt;floor_size+j] ? <span class="stringliteral">&quot; x&quot;</span> : <span class="stringliteral">&quot; -&quot;</span>);</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>      }</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>      cout &lt;&lt; endl;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    }</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keywordflow">if</span> (this-&gt;active != NULL)</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>      cout &lt;&lt; *this-&gt;active;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    cout &lt;&lt; <span class="stringliteral">&quot;Score : &quot;</span> &lt;&lt; this-&gt;score &lt;&lt; endl;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>  }</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>};</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>ostream &amp;operator&lt;&lt;(ostream &amp;os, <span class="keyword">const</span> <a class="code hl_class" href="classField.html">Field</a> &amp;f);</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassField_html"><div class="ttname"><a href="classField.html">Field</a></div><div class="ttdoc">Field est une classe pour représenter le plateau du jeu de tetris.</div><div class="ttdef"><b>Definition:</b> Field.h:26</div></div>
+<div class="ttc" id="aclassField_html_a15e0861827b085f67d20ea7c5abe08f9"><div class="ttname"><a href="classField.html#a15e0861827b085f67d20ea7c5abe08f9">Field::Forward</a></div><div class="ttdeci">void Forward()</div><div class="ttdoc">Déplace la pièce active vers l'avant si le mouvement est possible.</div><div class="ttdef"><b>Definition:</b> Field.cpp:89</div></div>
+<div class="ttc" id="aclassField_html_a1f1f55ba45abb295ddf0df893625a3a0"><div class="ttname"><a href="classField.html#a1f1f55ba45abb295ddf0df893625a3a0">Field::GetLevel</a></div><div class="ttdeci">int GetLevel() const</div><div class="ttdoc">Renvoie le niveau actuel du jeu.</div><div class="ttdef"><b>Definition:</b> Field.h:66</div></div>
+<div class="ttc" id="aclassField_html_a2c362cfcc8e48a318639b3b7f36a7533"><div class="ttname"><a href="classField.html#a2c362cfcc8e48a318639b3b7f36a7533">Field::RotateForward</a></div><div class="ttdeci">void RotateForward()</div><div class="ttdoc">Fait tourner la pièce active autour de Ox d'un quart de tour vers l'avant si le mouvement est possibl...</div><div class="ttdef"><b>Definition:</b> Field.cpp:129</div></div>
+<div class="ttc" id="aclassField_html_a3f60d2ee3560f8fe89ea8a0788f9edb1"><div class="ttname"><a href="classField.html#a3f60d2ee3560f8fe89ea8a0788f9edb1">Field::GetDimensions</a></div><div class="ttdeci">const vector&lt; int &gt; GetDimensions() const</div><div class="ttdoc">Renvoie les dimensions du plateau.</div><div class="ttdef"><b>Definition:</b> Field.h:42</div></div>
+<div class="ttc" id="aclassField_html_a418724345703cef57d00460809680227"><div class="ttname"><a href="classField.html#a418724345703cef57d00460809680227">Field::SetLevel</a></div><div class="ttdeci">void SetLevel(int level)</div><div class="ttdoc">Modifie le niveau actuel du jeu.</div><div class="ttdef"><b>Definition:</b> Field.cpp:62</div></div>
+<div class="ttc" id="aclassField_html_a45d6e6d09b8f8e46de62b40119d62c60"><div class="ttname"><a href="classField.html#a45d6e6d09b8f8e46de62b40119d62c60">Field::~Field</a></div><div class="ttdeci">~Field()</div><div class="ttdoc">Destructeur.</div><div class="ttdef"><b>Definition:</b> Field.cpp:29</div></div>
+<div class="ttc" id="aclassField_html_a6f7450cf6501f6b2b475a389d79aa3d2"><div class="ttname"><a href="classField.html#a6f7450cf6501f6b2b475a389d79aa3d2">Field::Right</a></div><div class="ttdeci">void Right()</div><div class="ttdoc">Déplace la pièce active sur la droite si le mouvement est possible.</div><div class="ttdef"><b>Definition:</b> Field.cpp:79</div></div>
+<div class="ttc" id="aclassField_html_a705f283f478cb28cc9f6cd0ceaeff7dd"><div class="ttname"><a href="classField.html#a705f283f478cb28cc9f6cd0ceaeff7dd">Field::IsGameOver</a></div><div class="ttdeci">bool IsGameOver() const</div><div class="ttdoc">Renvoie vrai si le jeu est terminé.</div><div class="ttdef"><b>Definition:</b> Field.h:70</div></div>
+<div class="ttc" id="aclassField_html_a7266972786aa8e46ce95f05d1d708ffc"><div class="ttname"><a href="classField.html#a7266972786aa8e46ce95f05d1d708ffc">Field::operator=</a></div><div class="ttdeci">Field &amp; operator=(Field &amp;other)</div><div class="ttdoc">Initialisation par assignation.</div><div class="ttdef"><b>Definition:</b> Field.cpp:38</div></div>
+<div class="ttc" id="aclassField_html_a7ef13d30688e57f6b837d05b8d01b4f8"><div class="ttname"><a href="classField.html#a7ef13d30688e57f6b837d05b8d01b4f8">Field::ActivePiecePositions</a></div><div class="ttdeci">const vector&lt; Position &gt; ActivePiecePositions() const</div><div class="ttdoc">Renvoie les positions occupées par la pièce active, utile pour l'affichage.</div><div class="ttdef"><b>Definition:</b> Field.h:62</div></div>
+<div class="ttc" id="aclassField_html_a7f9ba7e28ecf2c7efcc64a0358ac6d8e"><div class="ttname"><a href="classField.html#a7f9ba7e28ecf2c7efcc64a0358ac6d8e">Field::Start</a></div><div class="ttdeci">void Start()</div><div class="ttdoc">Commence le jeu.</div><div class="ttdef"><b>Definition:</b> Field.cpp:159</div></div>
+<div class="ttc" id="aclassField_html_a8148e1c045fd27ae4892f0a6204d2d4c"><div class="ttname"><a href="classField.html#a8148e1c045fd27ae4892f0a6204d2d4c">Field::RotateCW</a></div><div class="ttdeci">void RotateCW()</div><div class="ttdoc">Fait tourner la pièce active dans le plan de l'écran d'un quart de tour dans le sens des aiguilles d'...</div><div class="ttdef"><b>Definition:</b> Field.cpp:109</div></div>
+<div class="ttc" id="aclassField_html_a9338bc1641c711f618c1ef18b5d58618"><div class="ttname"><a href="classField.html#a9338bc1641c711f618c1ef18b5d58618">Field::RotateBackward</a></div><div class="ttdeci">void RotateBackward()</div><div class="ttdoc">Fait tourner la pièce active autour de Ox d'un quart de tour vers l'arrière si le mouvement est possi...</div><div class="ttdef"><b>Definition:</b> Field.cpp:139</div></div>
+<div class="ttc" id="aclassField_html_aa0d2a42df398cb284aded394edd765ca"><div class="ttname"><a href="classField.html#aa0d2a42df398cb284aded394edd765ca">Field::Reset</a></div><div class="ttdeci">void Reset()</div><div class="ttdoc">Réinitialise le jeu à la situation de départ.</div><div class="ttdef"><b>Definition:</b> Field.cpp:149</div></div>
+<div class="ttc" id="aclassField_html_aa74a5d280a0501a313f11697000f354b"><div class="ttname"><a href="classField.html#aa74a5d280a0501a313f11697000f354b">Field::Left</a></div><div class="ttdeci">void Left()</div><div class="ttdoc">Déplace la pièce active sur la gauche si le mouvement est possible.</div><div class="ttdef"><b>Definition:</b> Field.cpp:69</div></div>
+<div class="ttc" id="aclassField_html_ab9a718764e88cb90d8b8671f02b782da"><div class="ttname"><a href="classField.html#ab9a718764e88cb90d8b8671f02b782da">Field::Field</a></div><div class="ttdeci">Field(vector&lt; int &gt; dimensions, PieceFactory factory)</div><div class="ttdoc">Construit un plateau.</div><div class="ttdef"><b>Definition:</b> Field.cpp:7</div></div>
+<div class="ttc" id="aclassField_html_ac15287eb422280279dba1e1be290c2f8"><div class="ttname"><a href="classField.html#ac15287eb422280279dba1e1be290c2f8">Field::RotateCCW</a></div><div class="ttdeci">void RotateCCW()</div><div class="ttdoc">Fait tourner la pièce active dans le plan de l'écran d'un quart de tour dans le sens contraire des ai...</div><div class="ttdef"><b>Definition:</b> Field.cpp:119</div></div>
+<div class="ttc" id="aclassField_html_ad1c5aba0472c1d07e0e8929106f001c4"><div class="ttname"><a href="classField.html#ad1c5aba0472c1d07e0e8929106f001c4">Field::Backward</a></div><div class="ttdeci">void Backward()</div><div class="ttdoc">Déplace la pièce active vers l'arrière si le mouvement est possible.</div><div class="ttdef"><b>Definition:</b> Field.cpp:99</div></div>
+<div class="ttc" id="aclassField_html_ad75e37f3eec0b65b4b6cafcd7ca5ed8a"><div class="ttname"><a href="classField.html#ad75e37f3eec0b65b4b6cafcd7ca5ed8a">Field::SetDimensions</a></div><div class="ttdeci">void SetDimensions(vector&lt; int &gt; dimensions)</div><div class="ttdoc">Dimensionne le plateau.</div><div class="ttdef"><b>Definition:</b> Field.cpp:51</div></div>
+<div class="ttc" id="aclassField_html_adb38a3b758427a497a43530248476765"><div class="ttname"><a href="classField.html#adb38a3b758427a497a43530248476765">Field::GetScore</a></div><div class="ttdeci">int GetScore() const</div><div class="ttdoc">Renvoie le score de l'utilisateur.</div><div class="ttdef"><b>Definition:</b> Field.h:68</div></div>
+<div class="ttc" id="aclassField_html_ae4af2c40ea56731b0df585a380930d05"><div class="ttname"><a href="classField.html#ae4af2c40ea56731b0df585a380930d05">Field::Update</a></div><div class="ttdeci">void Update()</div><div class="ttdoc">Met à jour la position de la pièce active en réponse à la force gravitationnelle. Si la position ne p...</div><div class="ttdef"><b>Definition:</b> Field.cpp:167</div></div>
+<div class="ttc" id="aclassField_html_af161d3ccf57a981655774a38a36d950a"><div class="ttname"><a href="classField.html#af161d3ccf57a981655774a38a36d950a">Field::getName</a></div><div class="ttdeci">string getName() const</div><div class="ttdoc">Renvoie le nom de la classe.</div><div class="ttdef"><b>Definition:</b> Field.h:40</div></div>
+<div class="ttc" id="aclassPieceFactory_html"><div class="ttname"><a href="classPieceFactory.html">PieceFactory</a></div><div class="ttdoc">PieceFactory est une usine à pièces pour le jeu de tetris.</div><div class="ttdef"><b>Definition:</b> PieceFactory.h:25</div></div>
+<div class="ttc" id="aclassPiece_html"><div class="ttname"><a href="classPiece.html">Piece</a></div><div class="ttdoc">Piece est une classe générique pour représenter une pièce du jeu de tetris.</div><div class="ttdef"><b>Definition:</b> Piece.h:31</div></div>
+<div class="ttc" id="aclassPiece_html_abf5e6529e7fd4adf7c628e21a3b1853e"><div class="ttname"><a href="classPiece.html#abf5e6529e7fd4adf7c628e21a3b1853e">Piece::Positions</a></div><div class="ttdeci">vector&lt; Position &gt; Positions() const</div><div class="ttdoc">Renvoie les positions occupées par la pièce.</div><div class="ttdef"><b>Definition:</b> Piece.h:48</div></div>
+<div class="ttc" id="astructPosition_html"><div class="ttname"><a href="structPosition.html">Position</a></div><div class="ttdoc">Une case du plateau de jeu.</div><div class="ttdef"><b>Definition:</b> Piece.h:19</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
+</small></address>
+</body>
+</html>

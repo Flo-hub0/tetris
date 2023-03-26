@@ -1,0 +1,4 @@
+<map id="Ipiece" name="Ipiece">
+<area shape="rect" id="node1" title="Ipiece est la classe pour représenter la pièce I du jeu." alt="" coords="5,80,63,107"/>
+<area shape="rect" id="node2" href="$classPiece.html" title="Piece est une classe générique pour représenter une pièce du jeu de tetris." alt="" coords="7,5,61,32"/>
+</map>
