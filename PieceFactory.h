@@ -9,11 +9,16 @@
 #define _PIECE_FACTORY_H
 
 #include <Ipiece.h>
+#include <Jpiece.h>
+#include <Lpiece.h>
+#include <Opiece.h>
 #include <Spiece.h>
+#include <Tpiece.h>
+#include <Zpiece.h>
 #include <array>
 
 /// \brief La liste des types de pièce générées par l'usine.
-static constexpr array<char, 2> shapes { 'I', 'S' };
+static constexpr array<char, 7> shapes { 'I', 'J', 'L', 'O', 'S', 'T', 'Z' };
 
 using namespace std;
 

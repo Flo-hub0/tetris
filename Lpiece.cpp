@@ -1,12 +1,12 @@
-#include <Ipiece.h>
+#include <Lpiece.h>
 
-Ipiece::Ipiece()
+Lpiece::Lpiece()
 {
   this->SetShape();
 }
 
-Ipiece &
-Ipiece::operator=(Ipiece &other)
+Lpiece &
+Lpiece::operator=(Lpiece &other)
 {
   Piece::operator=(other);
   this->shape = other.shape;
@@ -15,13 +15,13 @@ Ipiece::operator=(Ipiece &other)
 }
 
 string
-Ipiece::ShapeName() const
+Lpiece::ShapeName() const
 {
-  return "Ipiece";
+  return "Lpiece";
 }
 
 void
-Ipiece::SetShape()
+Lpiece::SetShape()
 {
   this->gravity = center_of_gravity;
   for (auto p : this->positions)

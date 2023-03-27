@@ -1,5 +1,0 @@
-<map id="Graphe hiérarchique des classes" name="Graphe hiérarchique des classes">
-<area shape="rect" id="node1" href="$classPiece.html" title="Piece est une classe générique pour représenter une pièce du jeu de tetris." alt="" coords="5,31,60,57"/>
-<area shape="rect" id="node2" href="$classIpiece.html" title="Ipiece est la classe pour représenter la pièce I du jeu." alt="" coords="111,5,168,32"/>
-<area shape="rect" id="node3" href="$classSpiece.html" title="Spiece est la classe pour représenter la pièce S du jeu." alt="" coords="108,56,171,83"/>
-</map>

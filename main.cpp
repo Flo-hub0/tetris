@@ -5,8 +5,6 @@
     \author Florine Lefer - ENSTA
 */
 
-#include <Ipiece.h>
-#include <Spiece.h>
 #include <PieceFactory.h>
 #include <Field.h>
 

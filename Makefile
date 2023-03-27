@@ -2,7 +2,7 @@
 .SUFFIXES: .cpp
 
 TARGET         = tetris
-OBJECTS        = Field.o Piece.o Ipiece.o Spiece.o PieceFactory.o main.o
+OBJECTS        = Field.o Piece.o Ipiece.o Jpiece.o Lpiece.o Opiece.o Spiece.o Tpiece.o Zpiece.o PieceFactory.o main.o
 SOURCES        = $(OBJECTS:.o=.cpp)
 
 CXX            = /opt/local/bin/g++

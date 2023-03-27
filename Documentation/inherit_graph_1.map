@@ -1,0 +1,10 @@
+<map id="Graphe hiérarchique des classes" name="Graphe hiérarchique des classes">
+<area shape="rect" id="node1" href="$classPiece.html" title="Piece est une classe générique pour représenter une pièce du jeu de tetris." alt="" coords="5,157,60,184"/>
+<area shape="rect" id="node2" href="$classIpiece.html" title="Ipiece est la classe pour représenter la pièce I du jeu." alt="" coords="111,5,168,32"/>
+<area shape="rect" id="node3" href="$classJpiece.html" title="Jpiece est la classe pour représenter la pièce J du jeu." alt="" coords="109,56,169,83"/>
+<area shape="rect" id="node4" href="$classLpiece.html" title="Lpiece est la classe pour représenter la pièce L du jeu." alt="" coords="109,107,169,133"/>
+<area shape="rect" id="node5" href="$classOpiece.html" title="Opiece est la classe pour représenter la pièce O du jeu." alt="" coords="108,157,171,184"/>
+<area shape="rect" id="node6" href="$classSpiece.html" title="Spiece est la classe pour représenter la pièce S du jeu." alt="" coords="108,208,171,235"/>
+<area shape="rect" id="node7" href="$classTpiece.html" title="Tpiece est la classe pour représenter la pièce T du jeu." alt="" coords="109,259,170,285"/>
+<area shape="rect" id="node8" href="$classZpiece.html" title="Zpiece est la classe pour représenter la pièce Z du jeu." alt="" coords="109,309,170,336"/>
+</map>

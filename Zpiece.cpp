@@ -1,12 +1,12 @@
-#include <Ipiece.h>
+#include <Zpiece.h>
 
-Ipiece::Ipiece()
+Zpiece::Zpiece()
 {
   this->SetShape();
 }
 
-Ipiece &
-Ipiece::operator=(Ipiece &other)
+Zpiece &
+Zpiece::operator=(Zpiece &other)
 {
   Piece::operator=(other);
   this->shape = other.shape;
@@ -15,13 +15,13 @@ Ipiece::operator=(Ipiece &other)
 }
 
 string
-Ipiece::ShapeName() const
+Zpiece::ShapeName() const
 {
-  return "Ipiece";
+  return "Zpiece";
 }
 
 void
-Ipiece::SetShape()
+Zpiece::SetShape()
 {
   this->gravity = center_of_gravity;
   for (auto p : this->positions)
