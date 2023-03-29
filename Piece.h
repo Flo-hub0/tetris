@@ -22,7 +22,7 @@ typedef struct {
 
 /** \brief Piece est une classe générique pour représenter une pièce du jeu de tetris.
 
-    Elle gère le déplacement et les rotations de la pièce indépendemmant de toute contrainte car n'ayant aucune connaissance de l'environnent.
+    Elle gère le déplacement et les rotations de la pièce indépendamment de toute contrainte car n'ayant aucune connaissance de l'environnement.
     Les pièces sont des pièces 3D, en version 2D il suffira de ne pas autoriser les rotations autour de Oz (profondeur) au niveau de l'IHM.
     Par convention la dimension X sera toujours la dimension verticale, dirigée vers le haut, que l'on soit en 2D ou en 3D.
     Y est l'horizontale, dirigée vers la droite et Z la profondeur, dirigée vers l'arrière (repère direct).
@@ -72,7 +72,7 @@ public:
   void Undo();
   
 protected:
-  /// \brief Le centre de gravité de la pièce, i.e. par rapport auquel seront effectuées les rotations, donnée par son indice dans la liste de ses positions.
+  /// \brief Le centre de gravité de la pièce, i.e. par rapport auquel seront effectuées les rotations, donné par son indice dans la liste de ses positions.
   size_t gravity;
   /// \brief Les positions occupées par la pièce.
   vector<Position> shape, old_shape;

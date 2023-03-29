@@ -238,8 +238,8 @@ ostream &
 operator<<(ostream &os, const Field &f)
 {
   if (f.GetDimensions()[2] == 1)
-    os << "Plateau de GetDimensions() " << f.GetDimensions()[0] << "x" << f.GetDimensions()[1] << endl;
+    os << "Plateau de " << f.GetDimensions()[0] << "x" << f.GetDimensions()[1] << endl;
   else
-    os << "Plateau de GetDimensions() " << f.GetDimensions()[0] << "x" << f.GetDimensions()[1] << "x" << f.GetDimensions()[2] << endl << endl;
+    os << "Plateau de " << f.GetDimensions()[0] << "x" << f.GetDimensions()[1] << "x" << f.GetDimensions()[2] << endl << endl;
   return os;
 }
