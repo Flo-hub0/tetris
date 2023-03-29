@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Projet de Corentin Petitcolin &amp; Charles Rigaud &amp; Florine Lefer: Référence de la classe Field</title>
+<title>Projet de Florine Lefer &amp; Corentin Petitcolin &amp; Charles Rigaud: Référence de la classe Field</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign">
-   <div id="projectname">Projet de Corentin Petitcolin &amp; Charles Rigaud &amp; Florine Lefer
+   <div id="projectname">Projet de Florine Lefer &amp; Corentin Petitcolin &amp; Charles Rigaud
    </div>
   </td>
  </tr>
@@ -65,6 +65,8 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Fonctions membres publiques</a> &#124;
+<a href="#pri-methods">Fonctions membres privées</a> &#124;
+<a href="#pri-attribs">Attributs privés</a> &#124;
 <a href="classField-members.html">Liste de tous les membres</a>  </div>
   <div class="headertitle"><div class="title">Référence de la classe Field</div></div>
 </div><!--header-->
@@ -74,10 +76,20 @@ $(function() {
  <a href="classField.html#details">Plus de détails...</a></p>
 
 <p><code>#include &lt;<a class="el" href="Field_8h_source.html">Field.h</a>&gt;</code></p>
+<div class="dynheader">
+Graphe de collaboration de Field:</div>
+<div class="dyncontent">
+<div class="center"><img src="classField__coll__graph.png" border="0" usemap="#aField_coll__map" alt="Collaboration graph"/></div>
+<map name="aField_coll__map" id="aField_coll__map">
+<area shape="rect" title="Field est une classe pour représenter le plateau du jeu de tetris." alt="" coords="58,95,109,121"/>
+<area shape="rect" href="classPiece.html" title="Piece est une classe générique pour représenter une pièce du jeu de tetris." alt="" coords="5,5,60,32"/>
+<area shape="rect" href="classPieceFactory.html" title="PieceFactory est une usine à pièces pour le jeu de tetris." alt="" coords="85,5,183,32"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">légende</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Fonctions membres publiques</h2></td></tr>
-<tr class="memitem:ab9a718764e88cb90d8b8671f02b782da"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classField.html#ab9a718764e88cb90d8b8671f02b782da">Field</a> (vector&lt; int &gt; dimensions, <a class="el" href="classPieceFactory.html">PieceFactory</a> factory)</td></tr>
+<tr class="memitem:ab9a718764e88cb90d8b8671f02b782da"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classField.html#ab9a718764e88cb90d8b8671f02b782da">Field</a> (vector&lt; int &gt; <a class="el" href="classField.html#af116fd75014d6c21adbab310792fd1b8">dimensions</a>, <a class="el" href="classPieceFactory.html">PieceFactory</a> <a class="el" href="classField.html#a502e27734c32c2bda7b8ab4858678d09">factory</a>)</td></tr>
 <tr class="memdesc:ab9a718764e88cb90d8b8671f02b782da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construit un plateau.  <a href="classField.html#ab9a718764e88cb90d8b8671f02b782da">Plus de détails...</a><br /></td></tr>
 <tr class="separator:ab9a718764e88cb90d8b8671f02b782da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a59ad671ef8bd17b70c1f49b11bb7a3c4"><td class="memItemLeft" align="right" valign="top"><a id="a59ad671ef8bd17b70c1f49b11bb7a3c4" name="a59ad671ef8bd17b70c1f49b11bb7a3c4"></a>
@@ -101,7 +113,7 @@ const vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>
 <tr class="memdesc:a3f60d2ee3560f8fe89ea8a0788f9edb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renvoie les dimensions du plateau. <br /></td></tr>
 <tr class="separator:a3f60d2ee3560f8fe89ea8a0788f9edb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad75e37f3eec0b65b4b6cafcd7ca5ed8a"><td class="memItemLeft" align="right" valign="top"><a id="ad75e37f3eec0b65b4b6cafcd7ca5ed8a" name="ad75e37f3eec0b65b4b6cafcd7ca5ed8a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetDimensions</b> (vector&lt; int &gt; dimensions)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetDimensions</b> (vector&lt; int &gt; <a class="el" href="classField.html#af116fd75014d6c21adbab310792fd1b8">dimensions</a>)</td></tr>
 <tr class="memdesc:ad75e37f3eec0b65b4b6cafcd7ca5ed8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dimensionne le plateau. <br /></td></tr>
 <tr class="separator:ad75e37f3eec0b65b4b6cafcd7ca5ed8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa74a5d280a0501a313f11697000f354b"><td class="memItemLeft" align="right" valign="top"><a id="aa74a5d280a0501a313f11697000f354b" name="aa74a5d280a0501a313f11697000f354b"></a>
@@ -141,7 +153,7 @@ const vector&lt; <a class="el" href="structPosition.html">Position</a> &gt;&#160
 <tr class="memdesc:a7ef13d30688e57f6b837d05b8d01b4f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renvoie les positions occupées par la pièce active, utile pour l'affichage. <br /></td></tr>
 <tr class="separator:a7ef13d30688e57f6b837d05b8d01b4f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a418724345703cef57d00460809680227"><td class="memItemLeft" align="right" valign="top"><a id="a418724345703cef57d00460809680227" name="a418724345703cef57d00460809680227"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetLevel</b> (int level)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetLevel</b> (int <a class="el" href="classField.html#a7c416e8a63287e50bac7a5970b377f3a">level</a>)</td></tr>
 <tr class="memdesc:a418724345703cef57d00460809680227"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modifie le niveau actuel du jeu. <br /></td></tr>
 <tr class="separator:a418724345703cef57d00460809680227"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f1f55ba45abb295ddf0df893625a3a0"><td class="memItemLeft" align="right" valign="top"><a id="a1f1f55ba45abb295ddf0df893625a3a0" name="a1f1f55ba45abb295ddf0df893625a3a0"></a>
@@ -168,6 +180,52 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Start</b> ()</td></tr
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Update</b> ()</td></tr>
 <tr class="memdesc:ae4af2c40ea56731b0df585a380930d05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Met à jour la position de la pièce active en réponse à la force gravitationnelle. Si la position ne peut être mise à jour à cause de la présence d'une autre pièce en dessous, la pièce n'est plus active. La sémantique utilisée est que si la pièce atteint un niveau où elle ne peut descendre davantage, ce n'est que lors de l'itération suivante qu'elle sera figée, autrement après avoir tenté de descendre au niveau impossible. C'est en principe comme cela que le logiciel d'origine se comporte. <br /></td></tr>
 <tr class="separator:ae4af2c40ea56731b0df585a380930d05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Fonctions membres privées</h2></td></tr>
+<tr class="memitem:acfe0eefb7c48cfa2156ec3bdc836d173"><td class="memItemLeft" align="right" valign="top"><a id="acfe0eefb7c48cfa2156ec3bdc836d173" name="acfe0eefb7c48cfa2156ec3bdc836d173"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>CheckValidity</b> () const</td></tr>
+<tr class="memdesc:acfe0eefb7c48cfa2156ec3bdc836d173"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renvoie vrai si la position et l'orientation de la pièce active est valide, i.e. n'entre pas en collision avec des briques. <br /></td></tr>
+<tr class="separator:acfe0eefb7c48cfa2156ec3bdc836d173"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cad71ee3b0ca3c2583554bd8103985b"><td class="memItemLeft" align="right" valign="top"><a id="a2cad71ee3b0ca3c2583554bd8103985b" name="a2cad71ee3b0ca3c2583554bd8103985b"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsFilled</b> (int n) const</td></tr>
+<tr class="memdesc:a2cad71ee3b0ca3c2583554bd8103985b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renvoie vrai si l'étage n est totalement rempli de briques. Un étage peut être une ligne en 2D ou un rectangle en 3D. <br /></td></tr>
+<tr class="separator:a2cad71ee3b0ca3c2583554bd8103985b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Attributs privés</h2></td></tr>
+<tr class="memitem:af116fd75014d6c21adbab310792fd1b8"><td class="memItemLeft" align="right" valign="top"><a id="af116fd75014d6c21adbab310792fd1b8" name="af116fd75014d6c21adbab310792fd1b8"></a>
+vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>dimensions</b></td></tr>
+<tr class="memdesc:af116fd75014d6c21adbab310792fd1b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Les dimensions du plateau. <br /></td></tr>
+<tr class="separator:af116fd75014d6c21adbab310792fd1b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a028a95668db3dc3d8a0b18a88a41dc1f"><td class="memItemLeft" align="right" valign="top"><a id="a028a95668db3dc3d8a0b18a88a41dc1f" name="a028a95668db3dc3d8a0b18a88a41dc1f"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>floor_size</b></td></tr>
+<tr class="memdesc:a028a95668db3dc3d8a0b18a88a41dc1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">La taille d'un niveau. On stocke cette valeur afin d'accélérer les calculs car elle sera souvent utlisée. <br /></td></tr>
+<tr class="separator:a028a95668db3dc3d8a0b18a88a41dc1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65091de9841c24140ff95008e4d19c97"><td class="memItemLeft" align="right" valign="top"><a id="a65091de9841c24140ff95008e4d19c97" name="a65091de9841c24140ff95008e4d19c97"></a>
+vector&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>grid</b></td></tr>
+<tr class="memdesc:a65091de9841c24140ff95008e4d19c97"><td class="mdescLeft">&#160;</td><td class="mdescRight">La grille pour gérer l'occupation de l'espace. True pour les cases occupées, false pour les cases libres. <br /></td></tr>
+<tr class="separator:a65091de9841c24140ff95008e4d19c97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb287ff4e7cb1c5c1be0c8229d573860"><td class="memItemLeft" align="right" valign="top"><a id="acb287ff4e7cb1c5c1be0c8229d573860" name="acb287ff4e7cb1c5c1be0c8229d573860"></a>
+<a class="el" href="classPiece.html">Piece</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>active</b></td></tr>
+<tr class="memdesc:acb287ff4e7cb1c5c1be0c8229d573860"><td class="mdescLeft">&#160;</td><td class="mdescRight">La pièce active, autrement dit la pièce gérée par le joueur. <br /></td></tr>
+<tr class="separator:acb287ff4e7cb1c5c1be0c8229d573860"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a502e27734c32c2bda7b8ab4858678d09"><td class="memItemLeft" align="right" valign="top"><a id="a502e27734c32c2bda7b8ab4858678d09" name="a502e27734c32c2bda7b8ab4858678d09"></a>
+<a class="el" href="classPieceFactory.html">PieceFactory</a>&#160;</td><td class="memItemRight" valign="bottom"><b>factory</b></td></tr>
+<tr class="memdesc:a502e27734c32c2bda7b8ab4858678d09"><td class="mdescLeft">&#160;</td><td class="mdescRight">L'usine à pièces, qui sera appelée lorsqu'une nouvelle pièce sera requise. <br /></td></tr>
+<tr class="separator:a502e27734c32c2bda7b8ab4858678d09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c416e8a63287e50bac7a5970b377f3a"><td class="memItemLeft" align="right" valign="top"><a id="a7c416e8a63287e50bac7a5970b377f3a" name="a7c416e8a63287e50bac7a5970b377f3a"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>level</b></td></tr>
+<tr class="memdesc:a7c416e8a63287e50bac7a5970b377f3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Le niveau actuel du jeu. <br /></td></tr>
+<tr class="separator:a7c416e8a63287e50bac7a5970b377f3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb00236a1d0b2126a8fb2473b1708b52"><td class="memItemLeft" align="right" valign="top"><a id="acb00236a1d0b2126a8fb2473b1708b52" name="acb00236a1d0b2126a8fb2473b1708b52"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>score</b></td></tr>
+<tr class="memdesc:acb00236a1d0b2126a8fb2473b1708b52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Le score de l'utilisateur. <br /></td></tr>
+<tr class="separator:acb00236a1d0b2126a8fb2473b1708b52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89b9f4326fe0654d8a5f8fa9587f19ba"><td class="memItemLeft" align="right" valign="top"><a id="a89b9f4326fe0654d8a5f8fa9587f19ba" name="a89b9f4326fe0654d8a5f8fa9587f19ba"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isover</b></td></tr>
+<tr class="memdesc:a89b9f4326fe0654d8a5f8fa9587f19ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Le jeu est-il terminé ? <br /></td></tr>
+<tr class="separator:a89b9f4326fe0654d8a5f8fa9587f19ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
 <div class="textblock"><p ><a class="el" href="classField.html" title="Field est une classe pour représenter le plateau du jeu de tetris.">Field</a> est une classe pour représenter le plateau du jeu de tetris. </p>
@@ -208,7 +266,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Update</b> ()</td></t
   </dd>
 </dl>
 
-<p class="reference">Références <a class="el" href="classField.html#ad75e37f3eec0b65b4b6cafcd7ca5ed8a">SetDimensions()</a>.</p>
+<p class="reference">Références <a class="el" href="classField.html#acb287ff4e7cb1c5c1be0c8229d573860">active</a>, <a class="el" href="classField.html#af116fd75014d6c21adbab310792fd1b8">dimensions</a>, <a class="el" href="classField.html#a502e27734c32c2bda7b8ab4858678d09">factory</a>, <a class="el" href="classField.html#a65091de9841c24140ff95008e4d19c97">grid</a>, <a class="el" href="classField.html#a89b9f4326fe0654d8a5f8fa9587f19ba">isover</a>, <a class="el" href="classField.html#a7c416e8a63287e50bac7a5970b377f3a">level</a>, <a class="el" href="classField.html#acb00236a1d0b2126a8fb2473b1708b52">score</a>, et <a class="el" href="classField.html#ad75e37f3eec0b65b4b6cafcd7ca5ed8a">SetDimensions()</a>.</p>
 <div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">

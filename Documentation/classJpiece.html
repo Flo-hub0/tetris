@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Projet de Corentin Petitcolin &amp; Charles Rigaud &amp; Florine Lefer: Référence de la classe Jpiece</title>
+<title>Projet de Florine Lefer &amp; Corentin Petitcolin &amp; Charles Rigaud: Référence de la classe Jpiece</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign">
-   <div id="projectname">Projet de Corentin Petitcolin &amp; Charles Rigaud &amp; Florine Lefer
+   <div id="projectname">Projet de Florine Lefer &amp; Corentin Petitcolin &amp; Charles Rigaud
    </div>
   </td>
  </tr>
@@ -65,6 +65,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Fonctions membres publiques</a> &#124;
+<a href="#pri-static-attribs">Attributs privés statiques</a> &#124;
 <a href="classJpiece-members.html">Liste de tous les membres</a>  </div>
   <div class="headertitle"><div class="title">Référence de la classe Jpiece</div></div>
 </div><!--header-->
@@ -88,8 +89,9 @@ Graphe de collaboration de Jpiece:</div>
 <div class="dyncontent">
 <div class="center"><img src="classJpiece__coll__graph.png" border="0" usemap="#aJpiece_coll__map" alt="Collaboration graph"/></div>
 <map name="aJpiece_coll__map" id="aJpiece_coll__map">
-<area shape="rect" title="Jpiece est la classe pour représenter la pièce J du jeu." alt="" coords="5,80,65,107"/>
-<area shape="rect" href="classPiece.html" title="Piece est une classe générique pour représenter une pièce du jeu de tetris." alt="" coords="8,5,63,32"/>
+<area shape="rect" title="Jpiece est la classe pour représenter la pièce J du jeu." alt="" coords="45,95,105,121"/>
+<area shape="rect" href="classPiece.html" title="Piece est une classe générique pour représenter une pièce du jeu de tetris." alt="" coords="5,5,60,32"/>
+<area shape="rect" href="structPosition.html" title="Une case du plateau de jeu." alt="" coords="85,5,154,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">légende</a>]</span></center></div>
 <table class="memberdecls">
@@ -196,6 +198,17 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Undo</b> ()</td></tr>
 <tr class="memdesc:af081c2364348cd5fd53fd195d3a1bd9b inherit pub_methods_classPiece"><td class="mdescLeft">&#160;</td><td class="mdescRight">Annule la dernière transformation géométrique appliquée à la pièce. Cette fonctionalité est utile pour le plateau, qui va appliquer une transformation, tester sa validité et éventuellement l'annuler si celle-ci n'est pas valide. <br /></td></tr>
 <tr class="separator:af081c2364348cd5fd53fd195d3a1bd9b inherit pub_methods_classPiece"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
+Attributs privés statiques</h2></td></tr>
+<tr class="memitem:abe1a179b817a8aff30e4bc4458447d7c"><td class="memItemLeft" align="right" valign="top"><a id="abe1a179b817a8aff30e4bc4458447d7c" name="abe1a179b817a8aff30e4bc4458447d7c"></a>
+static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>center_of_gravity</b> = 1</td></tr>
+<tr class="memdesc:abe1a179b817a8aff30e4bc4458447d7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Le centre de gravité de la pièce. <br /></td></tr>
+<tr class="separator:abe1a179b817a8aff30e4bc4458447d7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb24690d37b5083107fd701cc11b6813"><td class="memItemLeft" align="right" valign="top"><a id="abb24690d37b5083107fd701cc11b6813" name="abb24690d37b5083107fd701cc11b6813"></a>
+static constexpr <a class="el" href="structPosition.html">Position</a>&#160;</td><td class="memItemRight" valign="bottom"><b>positions</b> [] = { {0,0,0}, {0,1,0}, {0,2,0}, {1,0,0} }</td></tr>
+<tr class="memdesc:abb24690d37b5083107fd701cc11b6813"><td class="mdescLeft">&#160;</td><td class="mdescRight">Les positions occupées par la forme. <br /></td></tr>
+<tr class="separator:abb24690d37b5083107fd701cc11b6813"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Membres hérités additionnels</h2></td></tr>
 <tr class="inherit_header pro_methods_classPiece"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classPiece')"><img src="closed.png" alt="-"/>&#160;Fonctions membres protégées hérités de <a class="el" href="classPiece.html">Piece</a></td></tr>
@@ -206,7 +219,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ComputeFootprint</b> 
 <tr class="inherit_header pro_attribs_classPiece"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classPiece')"><img src="closed.png" alt="-"/>&#160;Attributs protégés hérités de <a class="el" href="classPiece.html">Piece</a></td></tr>
 <tr class="memitem:afd0c82f98549d20c78988dcae5a8cf7e inherit pro_attribs_classPiece"><td class="memItemLeft" align="right" valign="top"><a id="afd0c82f98549d20c78988dcae5a8cf7e" name="afd0c82f98549d20c78988dcae5a8cf7e"></a>
 size_t&#160;</td><td class="memItemRight" valign="bottom"><b>gravity</b></td></tr>
-<tr class="memdesc:afd0c82f98549d20c78988dcae5a8cf7e inherit pro_attribs_classPiece"><td class="mdescLeft">&#160;</td><td class="mdescRight">Le centre de gravité de la pièce, i.e. par rapport auquel seront effectuées les rotations, donnée par son indice dans la liste de ses positions. <br /></td></tr>
+<tr class="memdesc:afd0c82f98549d20c78988dcae5a8cf7e inherit pro_attribs_classPiece"><td class="mdescLeft">&#160;</td><td class="mdescRight">Le centre de gravité de la pièce, i.e. par rapport auquel seront effectuées les rotations, donné par son indice dans la liste de ses positions. <br /></td></tr>
 <tr class="separator:afd0c82f98549d20c78988dcae5a8cf7e inherit pro_attribs_classPiece"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6402ee7f9b00d95cd93078cf2d9cefe2 inherit pro_attribs_classPiece"><td class="memItemLeft" align="right" valign="top"><a id="a6402ee7f9b00d95cd93078cf2d9cefe2" name="a6402ee7f9b00d95cd93078cf2d9cefe2"></a>
 vector&lt; <a class="el" href="structPosition.html">Position</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>shape</b></td></tr>

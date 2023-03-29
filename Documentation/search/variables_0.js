@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['footprint_0',['footprint',['../classPiece.html#a9083b782d37bf48fd217e8f8f5d6976d',1,'Piece']]]
+  ['active_0',['active',['../classField.html#acb287ff4e7cb1c5c1be0c8229d573860',1,'Field']]]
 ];

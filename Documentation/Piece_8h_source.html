@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Projet de Corentin Petitcolin &amp; Charles Rigaud &amp; Florine Lefer:  Fichier source de Piece.h</title>
+<title>Projet de Florine Lefer &amp; Corentin Petitcolin &amp; Charles Rigaud:  Fichier source de Piece.h</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign">
-   <div id="projectname">Projet de Corentin Petitcolin &amp; Charles Rigaud &amp; Florine Lefer
+   <div id="projectname">Projet de Florine Lefer &amp; Corentin Petitcolin &amp; Charles Rigaud
    </div>
   </td>
  </tr>
@@ -110,7 +110,7 @@ $(function() {
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classPiece.html#a470d1fc275ab2b5cfe73782bb346659a">ComputeFootprint</a>();</div>
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  <span class="keywordtype">void</span> SaveForRestore();</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classPiece.html#abf3dec14403102cba28ff671503de95d">SaveForRestore</a>();</div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>};</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>ostream &amp;operator&lt;&lt;(ostream &amp;os, <span class="keyword">const</span> <a class="code hl_class" href="classPiece.html">Piece</a> &amp;p);</div>
@@ -129,6 +129,7 @@ $(function() {
 <div class="ttc" id="aclassPiece_html_a9c8d2786719224cfd49367ab61c20ac9"><div class="ttname"><a href="classPiece.html#a9c8d2786719224cfd49367ab61c20ac9">Piece::SetTopCenter</a></div><div class="ttdeci">void SetTopCenter(vector&lt; int &gt; dimensions)</div><div class="ttdoc">Positionne la pièce en haut au centre du jeu.</div><div class="ttdef"><b>Definition:</b> Piece.cpp:61</div></div>
 <div class="ttc" id="aclassPiece_html_ab8fe15ff9d02a1ca8f354e7ccafac17d"><div class="ttname"><a href="classPiece.html#ab8fe15ff9d02a1ca8f354e7ccafac17d">Piece::RotateCW</a></div><div class="ttdeci">void RotateCW()</div><div class="ttdoc">Fait tourner la pièce dans le plan de l'écran d'un quart de tour dans le sens des aiguilles d'une mon...</div><div class="ttdef"><b>Definition:</b> Piece.cpp:131</div></div>
 <div class="ttc" id="aclassPiece_html_abc911cdbfe9cc0be7b8943ed33bcba22"><div class="ttname"><a href="classPiece.html#abc911cdbfe9cc0be7b8943ed33bcba22">Piece::RotateBackward</a></div><div class="ttdeci">void RotateBackward()</div><div class="ttdoc">Fait tourner la pièce autour de Ox d'un quart de tour vers l'arrière.</div><div class="ttdef"><b>Definition:</b> Piece.cpp:185</div></div>
+<div class="ttc" id="aclassPiece_html_abf3dec14403102cba28ff671503de95d"><div class="ttname"><a href="classPiece.html#abf3dec14403102cba28ff671503de95d">Piece::SaveForRestore</a></div><div class="ttdeci">void SaveForRestore()</div><div class="ttdoc">Sauvegarde des paramètres afin de pouvoir défaire la prochaine transformations géométrique....</div><div class="ttdef"><b>Definition:</b> Piece.cpp:54</div></div>
 <div class="ttc" id="aclassPiece_html_abf5e6529e7fd4adf7c628e21a3b1853e"><div class="ttname"><a href="classPiece.html#abf5e6529e7fd4adf7c628e21a3b1853e">Piece::Positions</a></div><div class="ttdeci">vector&lt; Position &gt; Positions() const</div><div class="ttdoc">Renvoie les positions occupées par la pièce.</div><div class="ttdef"><b>Definition:</b> Piece.h:48</div></div>
 <div class="ttc" id="aclassPiece_html_ac1b07700bf99339d16692abad1241a54"><div class="ttname"><a href="classPiece.html#ac1b07700bf99339d16692abad1241a54">Piece::Footprint</a></div><div class="ttdeci">vector&lt; vector&lt; int &gt; &gt; Footprint() const</div><div class="ttdoc">Renvoie l'encombrement de la pièce.</div><div class="ttdef"><b>Definition:</b> Piece.h:46</div></div>
 <div class="ttc" id="aclassPiece_html_ac57de5803bbad829b143bc7268267dc1"><div class="ttname"><a href="classPiece.html#ac57de5803bbad829b143bc7268267dc1">Piece::Piece</a></div><div class="ttdeci">Piece()</div><div class="ttdoc">Construit une pièce.</div><div class="ttdef"><b>Definition:</b> Piece.cpp:4</div></div>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Projet de Corentin Petitcolin &amp; Charles Rigaud &amp; Florine Lefer:  Fichier source de Opiece.h</title>
+<title>Projet de Florine Lefer &amp; Corentin Petitcolin &amp; Charles Rigaud:  Fichier source de Opiece.h</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign">
-   <div id="projectname">Projet de Corentin Petitcolin &amp; Charles Rigaud &amp; Florine Lefer
+   <div id="projectname">Projet de Florine Lefer &amp; Corentin Petitcolin &amp; Charles Rigaud
    </div>
   </td>
  </tr>
@@ -85,17 +85,19 @@ $(function() {
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classOpiece.html#a159104f24e73c2ea274840e9c50186f4">SetShape</a>();</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">int</span> center_of_gravity = 0;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="keyword">static</span> <span class="keyword">constexpr</span> <a class="code hl_struct" href="structPosition.html">Position</a> positions[] = { {0,0,0}, {0,1,0}, {1,0,0}, {1,1,0} };</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classOpiece.html#aab7a27a7a9478ea77b5d7ad0bfde0b63">   35</a></span>  <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classOpiece.html#aab7a27a7a9478ea77b5d7ad0bfde0b63">center_of_gravity</a> = 0;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classOpiece.html#a0ca50c9beafec831f6221181aa1e8a60">   37</a></span>  <span class="keyword">static</span> <span class="keyword">constexpr</span> <a class="code hl_struct" href="structPosition.html">Position</a> <a class="code hl_variable" href="classOpiece.html#a0ca50c9beafec831f6221181aa1e8a60">positions</a>[] = { {0,0,0}, {0,1,0}, {1,0,0}, {1,1,0} };</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>};</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aclassOpiece_html"><div class="ttname"><a href="classOpiece.html">Opiece</a></div><div class="ttdoc">Opiece est la classe pour représenter la pièce O du jeu.</div><div class="ttdef"><b>Definition:</b> Opiece.h:18</div></div>
+<div class="ttc" id="aclassOpiece_html_a0ca50c9beafec831f6221181aa1e8a60"><div class="ttname"><a href="classOpiece.html#a0ca50c9beafec831f6221181aa1e8a60">Opiece::positions</a></div><div class="ttdeci">static constexpr Position positions[]</div><div class="ttdoc">Les positions occupées par la forme.</div><div class="ttdef"><b>Definition:</b> Opiece.h:37</div></div>
 <div class="ttc" id="aclassOpiece_html_a159104f24e73c2ea274840e9c50186f4"><div class="ttname"><a href="classOpiece.html#a159104f24e73c2ea274840e9c50186f4">Opiece::SetShape</a></div><div class="ttdeci">virtual void SetShape()</div><div class="ttdoc">Définit la géométrie de la pièce.</div><div class="ttdef"><b>Definition:</b> Opiece.cpp:24</div></div>
 <div class="ttc" id="aclassOpiece_html_a17b5348830e84390b488c69eb2d01637"><div class="ttname"><a href="classOpiece.html#a17b5348830e84390b488c69eb2d01637">Opiece::operator=</a></div><div class="ttdeci">Opiece &amp; operator=(Opiece &amp;other)</div><div class="ttdoc">Initialisation par assignation.</div><div class="ttdef"><b>Definition:</b> Opiece.cpp:9</div></div>
 <div class="ttc" id="aclassOpiece_html_a1e0d108b1f3c9d5b4a11d48c5c57157c"><div class="ttname"><a href="classOpiece.html#a1e0d108b1f3c9d5b4a11d48c5c57157c">Opiece::ShapeName</a></div><div class="ttdeci">virtual string ShapeName() const</div><div class="ttdoc">Renvoie le nom de la pièce.</div><div class="ttdef"><b>Definition:</b> Opiece.cpp:18</div></div>
 <div class="ttc" id="aclassOpiece_html_a75710b03c82e8135e744baab3d64b1b1"><div class="ttname"><a href="classOpiece.html#a75710b03c82e8135e744baab3d64b1b1">Opiece::~Opiece</a></div><div class="ttdeci">virtual ~Opiece()</div><div class="ttdoc">Destructeur.</div><div class="ttdef"><b>Definition:</b> Opiece.h:25</div></div>
 <div class="ttc" id="aclassOpiece_html_a8bce6a28bca4ec483c5c3cced729424f"><div class="ttname"><a href="classOpiece.html#a8bce6a28bca4ec483c5c3cced729424f">Opiece::Opiece</a></div><div class="ttdeci">Opiece(Opiece &amp;other)</div><div class="ttdoc">Constructeur par copie.</div><div class="ttdef"><b>Definition:</b> Opiece.h:23</div></div>
+<div class="ttc" id="aclassOpiece_html_aab7a27a7a9478ea77b5d7ad0bfde0b63"><div class="ttname"><a href="classOpiece.html#aab7a27a7a9478ea77b5d7ad0bfde0b63">Opiece::center_of_gravity</a></div><div class="ttdeci">static constexpr int center_of_gravity</div><div class="ttdoc">Le centre de gravité de la pièce.</div><div class="ttdef"><b>Definition:</b> Opiece.h:35</div></div>
 <div class="ttc" id="aclassOpiece_html_aee2e42f0c7a355cd287a036fc4046e60"><div class="ttname"><a href="classOpiece.html#aee2e42f0c7a355cd287a036fc4046e60">Opiece::Opiece</a></div><div class="ttdeci">Opiece()</div><div class="ttdoc">Construit la pièce O.</div><div class="ttdef"><b>Definition:</b> Opiece.cpp:3</div></div>
 <div class="ttc" id="aclassPiece_html"><div class="ttname"><a href="classPiece.html">Piece</a></div><div class="ttdoc">Piece est une classe générique pour représenter une pièce du jeu de tetris.</div><div class="ttdef"><b>Definition:</b> Piece.h:31</div></div>
 <div class="ttc" id="astructPosition_html"><div class="ttname"><a href="structPosition.html">Position</a></div><div class="ttdoc">Une case du plateau de jeu.</div><div class="ttdef"><b>Definition:</b> Piece.h:19</div></div>

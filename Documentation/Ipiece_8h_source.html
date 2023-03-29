@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Projet de Corentin Petitcolin &amp; Charles Rigaud &amp; Florine Lefer:  Fichier source de Ipiece.h</title>
+<title>Projet de Florine Lefer &amp; Corentin Petitcolin &amp; Charles Rigaud:  Fichier source de Ipiece.h</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign">
-   <div id="projectname">Projet de Corentin Petitcolin &amp; Charles Rigaud &amp; Florine Lefer
+   <div id="projectname">Projet de Florine Lefer &amp; Corentin Petitcolin &amp; Charles Rigaud
    </div>
   </td>
  </tr>
@@ -85,16 +85,18 @@ $(function() {
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classIpiece.html#a919890e5359e986e4401897194437ce2">SetShape</a>();</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">int</span> center_of_gravity = 2;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="keyword">static</span> <span class="keyword">constexpr</span> <a class="code hl_struct" href="structPosition.html">Position</a> positions[] = { {0,0,0}, {0,1,0}, {0,2,0}, {0,3,0} };</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classIpiece.html#a99c2824bab2afea01039f80d63324199">   35</a></span>  <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classIpiece.html#a99c2824bab2afea01039f80d63324199">center_of_gravity</a> = 2;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classIpiece.html#a0cfaf6764c31ebdc2a453df9a64976eb">   37</a></span>  <span class="keyword">static</span> <span class="keyword">constexpr</span> <a class="code hl_struct" href="structPosition.html">Position</a> <a class="code hl_variable" href="classIpiece.html#a0cfaf6764c31ebdc2a453df9a64976eb">positions</a>[] = { {0,0,0}, {0,1,0}, {0,2,0}, {0,3,0} };</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>};</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aclassIpiece_html"><div class="ttname"><a href="classIpiece.html">Ipiece</a></div><div class="ttdoc">Ipiece est la classe pour représenter la pièce I du jeu.</div><div class="ttdef"><b>Definition:</b> Ipiece.h:18</div></div>
+<div class="ttc" id="aclassIpiece_html_a0cfaf6764c31ebdc2a453df9a64976eb"><div class="ttname"><a href="classIpiece.html#a0cfaf6764c31ebdc2a453df9a64976eb">Ipiece::positions</a></div><div class="ttdeci">static constexpr Position positions[]</div><div class="ttdoc">Les positions occupées par la forme.</div><div class="ttdef"><b>Definition:</b> Ipiece.h:37</div></div>
 <div class="ttc" id="aclassIpiece_html_a18fa001e990166a883f3536d819bcc1f"><div class="ttname"><a href="classIpiece.html#a18fa001e990166a883f3536d819bcc1f">Ipiece::ShapeName</a></div><div class="ttdeci">virtual string ShapeName() const</div><div class="ttdoc">Renvoie le nom de la pièce.</div><div class="ttdef"><b>Definition:</b> Ipiece.cpp:18</div></div>
 <div class="ttc" id="aclassIpiece_html_a3c5b08690f8b148fad05f811dddbcf5e"><div class="ttname"><a href="classIpiece.html#a3c5b08690f8b148fad05f811dddbcf5e">Ipiece::Ipiece</a></div><div class="ttdeci">Ipiece(Ipiece &amp;other)</div><div class="ttdoc">Constructeur par copie.</div><div class="ttdef"><b>Definition:</b> Ipiece.h:23</div></div>
 <div class="ttc" id="aclassIpiece_html_a799292bc8da00e5e1f668e362e5e1943"><div class="ttname"><a href="classIpiece.html#a799292bc8da00e5e1f668e362e5e1943">Ipiece::operator=</a></div><div class="ttdeci">Ipiece &amp; operator=(Ipiece &amp;other)</div><div class="ttdoc">Initialisation par assignation.</div><div class="ttdef"><b>Definition:</b> Ipiece.cpp:9</div></div>
 <div class="ttc" id="aclassIpiece_html_a919890e5359e986e4401897194437ce2"><div class="ttname"><a href="classIpiece.html#a919890e5359e986e4401897194437ce2">Ipiece::SetShape</a></div><div class="ttdeci">virtual void SetShape()</div><div class="ttdoc">Définit la géométrie de la pièce.</div><div class="ttdef"><b>Definition:</b> Ipiece.cpp:24</div></div>
+<div class="ttc" id="aclassIpiece_html_a99c2824bab2afea01039f80d63324199"><div class="ttname"><a href="classIpiece.html#a99c2824bab2afea01039f80d63324199">Ipiece::center_of_gravity</a></div><div class="ttdeci">static constexpr int center_of_gravity</div><div class="ttdoc">Le centre de gravité de la pièce.</div><div class="ttdef"><b>Definition:</b> Ipiece.h:35</div></div>
 <div class="ttc" id="aclassIpiece_html_aa15d690980163ea96e0eb84304ff347b"><div class="ttname"><a href="classIpiece.html#aa15d690980163ea96e0eb84304ff347b">Ipiece::~Ipiece</a></div><div class="ttdeci">virtual ~Ipiece()</div><div class="ttdoc">Destructeur.</div><div class="ttdef"><b>Definition:</b> Ipiece.h:25</div></div>
 <div class="ttc" id="aclassIpiece_html_adb9d5b9d3da5c558aa96c88c85975bba"><div class="ttname"><a href="classIpiece.html#adb9d5b9d3da5c558aa96c88c85975bba">Ipiece::Ipiece</a></div><div class="ttdeci">Ipiece()</div><div class="ttdoc">Construit la pièce I.</div><div class="ttdef"><b>Definition:</b> Ipiece.cpp:3</div></div>
 <div class="ttc" id="aclassPiece_html"><div class="ttname"><a href="classPiece.html">Piece</a></div><div class="ttdoc">Piece est une classe générique pour représenter une pièce du jeu de tetris.</div><div class="ttdef"><b>Definition:</b> Piece.h:31</div></div>

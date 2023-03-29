@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Projet de Corentin Petitcolin &amp; Charles Rigaud &amp; Florine Lefer: Référence de la classe Piece</title>
+<title>Projet de Florine Lefer &amp; Corentin Petitcolin &amp; Charles Rigaud: Référence de la classe Piece</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign">
-   <div id="projectname">Projet de Corentin Petitcolin &amp; Charles Rigaud &amp; Florine Lefer
+   <div id="projectname">Projet de Florine Lefer &amp; Corentin Petitcolin &amp; Charles Rigaud
    </div>
   </td>
  </tr>
@@ -67,6 +67,7 @@ $(function() {
 <a href="#pub-methods">Fonctions membres publiques</a> &#124;
 <a href="#pro-methods">Fonctions membres protégées</a> &#124;
 <a href="#pro-attribs">Attributs protégés</a> &#124;
+<a href="#pri-methods">Fonctions membres privées</a> &#124;
 <a href="classPiece-members.html">Liste de tous les membres</a>  </div>
   <div class="headertitle"><div class="title">Référence de la classe Piece</div></div>
 </div><!--header-->
@@ -181,7 +182,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ComputeFootprint</b> 
 Attributs protégés</h2></td></tr>
 <tr class="memitem:afd0c82f98549d20c78988dcae5a8cf7e"><td class="memItemLeft" align="right" valign="top"><a id="afd0c82f98549d20c78988dcae5a8cf7e" name="afd0c82f98549d20c78988dcae5a8cf7e"></a>
 size_t&#160;</td><td class="memItemRight" valign="bottom"><b>gravity</b></td></tr>
-<tr class="memdesc:afd0c82f98549d20c78988dcae5a8cf7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Le centre de gravité de la pièce, i.e. par rapport auquel seront effectuées les rotations, donnée par son indice dans la liste de ses positions. <br /></td></tr>
+<tr class="memdesc:afd0c82f98549d20c78988dcae5a8cf7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Le centre de gravité de la pièce, i.e. par rapport auquel seront effectuées les rotations, donné par son indice dans la liste de ses positions. <br /></td></tr>
 <tr class="separator:afd0c82f98549d20c78988dcae5a8cf7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6402ee7f9b00d95cd93078cf2d9cefe2"><td class="memItemLeft" align="right" valign="top"><a id="a6402ee7f9b00d95cd93078cf2d9cefe2" name="a6402ee7f9b00d95cd93078cf2d9cefe2"></a>
 vector&lt; <a class="el" href="structPosition.html">Position</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>shape</b></td></tr>
@@ -191,10 +192,17 @@ vector&lt; <a class="el" href="structPosition.html">Position</a> &gt;&#160;</td>
 vector&lt; vector&lt; int &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>footprint</b></td></tr>
 <tr class="memdesc:a9083b782d37bf48fd217e8f8f5d6976d"><td class="mdescLeft">&#160;</td><td class="mdescRight">L'encombrement de la pièce. L'encombrement est constitué des extrema, soit 2 ou 3 couples &lt;min,max&gt;. <br /></td></tr>
 <tr class="separator:a9083b782d37bf48fd217e8f8f5d6976d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Fonctions membres privées</h2></td></tr>
+<tr class="memitem:abf3dec14403102cba28ff671503de95d"><td class="memItemLeft" align="right" valign="top"><a id="abf3dec14403102cba28ff671503de95d" name="abf3dec14403102cba28ff671503de95d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SaveForRestore</b> ()</td></tr>
+<tr class="memdesc:abf3dec14403102cba28ff671503de95d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sauvegarde des paramètres afin de pouvoir défaire la prochaine transformations géométrique. Cette opération doit être appliquée au début de toute définition de transformation géométrique. <br /></td></tr>
+<tr class="separator:abf3dec14403102cba28ff671503de95d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
 <div class="textblock"><p ><a class="el" href="classPiece.html" title="Piece est une classe générique pour représenter une pièce du jeu de tetris.">Piece</a> est une classe générique pour représenter une pièce du jeu de tetris. </p>
-<p >Elle gère le déplacement et les rotations de la pièce indépendemmant de toute contrainte car n'ayant aucune connaissance de l'environnent. Les pièces sont des pièces 3D, en version 2D il suffira de ne pas autoriser les rotations autour de Oz (profondeur) au niveau de l'IHM. Par convention la dimension X sera toujours la dimension verticale, dirigée vers le haut, que l'on soit en 2D ou en 3D. Y est l'horizontale, dirigée vers la droite et Z la profondeur, dirigée vers l'arrière (repère direct). </p>
+<p >Elle gère le déplacement et les rotations de la pièce indépendamment de toute contrainte car n'ayant aucune connaissance de l'environnement. Les pièces sont des pièces 3D, en version 2D il suffira de ne pas autoriser les rotations autour de Oz (profondeur) au niveau de l'IHM. Par convention la dimension X sera toujours la dimension verticale, dirigée vers le haut, que l'on soit en 2D ou en 3D. Y est l'horizontale, dirigée vers la droite et Z la profondeur, dirigée vers l'arrière (repère direct). </p>
 </div><h2 class="groupheader">Documentation des fonctions membres</h2>
 <a id="a9c8d2786719224cfd49367ab61c20ac9" name="a9c8d2786719224cfd49367ab61c20ac9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9c8d2786719224cfd49367ab61c20ac9">&#9670;&nbsp;</a></span>SetTopCenter()</h2>
