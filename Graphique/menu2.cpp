@@ -1,5 +1,6 @@
 #include <gtk/gtk.h>
-
+/* #include <playing_window.h>
+*/
 
 static void print_hello (GtkWidget *widget,
              gpointer   data)
@@ -7,10 +8,15 @@ static void print_hello (GtkWidget *widget,
   g_print ("Hello World\n");
 }
 
-static void launch_playing_window (GtkWidget *window, gpointer data) {
-  gtk_window_destroy(window);
-  playing_window();
+static void playing_window(GtkWidget *widget, gpointer data) {
+  GtkWidget *window;
+  window = gtk_application_window_new(GTK_APPLICATION(data));
+  gtk_window_set_title(GTK_WINDOW(window), "Fenêtre de jeu");
+  gtk_window_set_default_size(GTK_WINDOW(window), 200, 200);
+  gtk_widget_show(window);
+  gtk_window_destroy(GTK_WINDOW(gtk_widget_get_parent(gtk_widget_get_parent(widget))));
 }
+
 
 static void activate (GtkApplication *app,
           gpointer        user_data)
@@ -30,7 +36,7 @@ static void activate (GtkApplication *app,
   gtk_window_set_child (GTK_WINDOW (window), grid);
 
   button = gtk_button_new_with_label ("Jouer");
-  g_signal_connect (button, "clicked", G_CALLBACK (launch_playing_window), window);
+  g_signal_connect (button, "clicked", G_CALLBACK (playing_window), app);
 
   /* Place the first button in the grid cell (0, 0), and make it fill
    * just 1 cell horizontally and vertically (ie no spanning)
