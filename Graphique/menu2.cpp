@@ -1,6 +1,6 @@
 #include <gtk/gtk.h>
-/* #include <playing_window.h>
-*/
+
+static GtkWidget *main_window;
 
 static void print_hello (GtkWidget *widget,
              gpointer   data)
@@ -8,13 +8,35 @@ static void print_hello (GtkWidget *widget,
   g_print ("Hello World\n");
 }
 
+static void go_back_to_menu(GtkWidget *widget, gpointer data) {
+  gtk_window_destroy(GTK_WINDOW(gtk_widget_get_parent(widget)));
+  gtk_widget_show(main_window);
+}
+
 static void playing_window(GtkWidget *widget, gpointer data) {
   GtkWidget *window;
+  GtkWidget *label;
+  GtkWidget *grid;
+  GtkWidget *button;
+
   window = gtk_application_window_new(GTK_APPLICATION(data));
   gtk_window_set_title(GTK_WINDOW(window), "Fenêtre de jeu");
   gtk_window_set_default_size(GTK_WINDOW(window), 200, 200);
+  
+  grid = gtk_grid_new();
+  gtk_window_set_child(GTK_WINDOW(window), grid);
+
+  label = gtk_label_new("C'est la fenêtre de jeu !");
+  gtk_grid_attach(GTK_GRID(grid), label, 0, 0, 1, 1);
+
+  button = gtk_button_new_with_label("Revenir au menu");
+  g_signal_connect(button, "clicked", G_CALLBACK(go_back_to_menu), window);
+  gtk_grid_attach(GTK_GRID(grid), button, 0, 1, 1, 1);
+  
   gtk_widget_show(window);
   gtk_window_destroy(GTK_WINDOW(gtk_widget_get_parent(gtk_widget_get_parent(widget))));
+
+  main_window=window;
 }
 
 
@@ -24,6 +46,8 @@ static void activate (GtkApplication *app,
   GtkWidget *window;
   GtkWidget *grid;
   GtkWidget *button;
+
+  main_window = window;
 
   /* create a new window, and set its title */
   window = gtk_application_window_new (app);
@@ -74,5 +98,5 @@ int main (int    argc,
   status = g_application_run (G_APPLICATION (app), argc, argv);
   g_object_unref (app);
 
-  return status;
+  return(status);
 }
