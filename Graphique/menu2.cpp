@@ -1,6 +1,9 @@
 #include <gtk/gtk.h>
+/*#include "render.h" */
+
 
 static GtkWidget *main_window;
+static GtkWidget *p_window;
 
 static void print_hello (GtkWidget *widget,
              gpointer   data)
@@ -8,8 +11,11 @@ static void print_hello (GtkWidget *widget,
   g_print ("Hello World\n");
 }
 
-static void go_back_to_menu(GtkWidget *widget, gpointer data) {
-  gtk_window_destroy(GTK_WINDOW(gtk_widget_get_parent(widget)));
+static void playing_window_destroy(GtkWidget *widget, gpointer data) {
+  GtkWidget *window;
+
+  gtk_window_destroy(GTK_WINDOW(gtk_widget_get_parent(gtk_widget_get_parent(widget))));
+  gtk_widget_set_visible(GTK_WIDGET(gtk_widget_get_parent(gtk_widget_get_parent(main_window))), true);
   gtk_widget_show(main_window);
 }
 
@@ -18,10 +24,11 @@ static void playing_window(GtkWidget *widget, gpointer data) {
   GtkWidget *label;
   GtkWidget *grid;
   GtkWidget *button;
+  GtkWidget *drawing_area;
 
   window = gtk_application_window_new(GTK_APPLICATION(data));
   gtk_window_set_title(GTK_WINDOW(window), "Fenêtre de jeu");
-  gtk_window_set_default_size(GTK_WINDOW(window), 200, 200);
+  gtk_window_set_default_size(GTK_WINDOW(window), 600, 600);
   
   grid = gtk_grid_new();
   gtk_window_set_child(GTK_WINDOW(window), grid);
@@ -30,13 +37,21 @@ static void playing_window(GtkWidget *widget, gpointer data) {
   gtk_grid_attach(GTK_GRID(grid), label, 0, 0, 1, 1);
 
   button = gtk_button_new_with_label("Revenir au menu");
-  g_signal_connect(button, "clicked", G_CALLBACK(go_back_to_menu), window);
+  g_signal_connect(button, "clicked", G_CALLBACK(playing_window_destroy), window);
   gtk_grid_attach(GTK_GRID(grid), button, 0, 1, 1, 1);
+
+/*
+  drawing_area = gtk_drawing_area_new();
+  gtk_widget_set_size_request(drawing_area, 200, 200);
+  g_signal_connect(drawing_area, "draw", G_CALLBACK(render), NULL);
+  gtk_grid_attach(GTK_GRID(grid), drawing_area, 0, 0, 0, 1);
+  gtk_container_add(GTK_CONTAINER(window), drawing_area);
+  */
   
   gtk_widget_show(window);
-  gtk_window_destroy(GTK_WINDOW(gtk_widget_get_parent(gtk_widget_get_parent(widget))));
+  gtk_widget_set_visible(GTK_WIDGET(gtk_widget_get_parent(gtk_widget_get_parent(widget))), false );
 
-  main_window=window;
+  p_window=window;
 }
 
 
@@ -47,7 +62,7 @@ static void activate (GtkApplication *app,
   GtkWidget *grid;
   GtkWidget *button;
 
-  main_window = window;
+  
 
   /* create a new window, and set its title */
   window = gtk_application_window_new (app);
@@ -60,7 +75,8 @@ static void activate (GtkApplication *app,
   gtk_window_set_child (GTK_WINDOW (window), grid);
 
   button = gtk_button_new_with_label ("Jouer");
-  g_signal_connect (button, "clicked", G_CALLBACK (playing_window), app);
+  g_signal_connect(button, "clicked", G_CALLBACK(playing_window), app);
+
 
   /* Place the first button in the grid cell (0, 0), and make it fill
    * just 1 cell horizontally and vertically (ie no spanning)
@@ -82,6 +98,8 @@ static void activate (GtkApplication *app,
    * span 2 columns.
    */
   gtk_grid_attach (GTK_GRID (grid), button, 0, 1, 2, 1);
+
+  main_window = window;
 
   gtk_widget_show (window);
 
