@@ -5,11 +5,11 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
-
+#include <cmath>
 // Structure pour décrire une pièce de Tetris
 struct TetrisPiece
 {
-    float x, y, z;
+    int x, y, z;
     int type; // on ne s'en sert pas en vrai
     float colorR, colorG, colorB;
     std::vector<std::vector<int>> matrix;
@@ -18,40 +18,53 @@ struct TetrisPiece
 
 std::vector<TetrisPiece> pieces;
 
+int *calculePositionPiece(TetrisPiece piece, int point) // on calcule la position du point en fonction de la pièce et de sa rotation
+{
+    int *position = new int[3];
+    position[0] = piece.matrix[point][0] * cos(piece.rotationZ) - piece.matrix[point][1] * sin(piece.rotationZ);
+    position[1] = piece.matrix[point][0] * sin(piece.rotationZ) + piece.matrix[point][1] * cos(piece.rotationZ);
+    position[2] = piece.matrix[point][2];
+
+    return position;
+}
+
 bool testCollision(std::vector<TetrisPiece> pieces)
 {
 
     for (const auto &piece : pieces)
     {
-        // tester qu'aucune case de la pièce ne dépasse des limites du tableau ou si il touche le fond
         for (const auto &point : piece.matrix)
         {
-            if (point[0] + piece.x < -5 || point[0] + piece.x >= 5 || point[1] + piece.y < -5 || point[1] + piece.y >= 5 || point[2] + piece.z < -5 || point[2] + piece.z >= 5)
+            int *position = calculePositionPiece(piece, &point - &piece.matrix[0]);
+            if (position[0] + piece.x < -5 || position[0] + piece.x > 5 || position[1] + piece.y < -5 || position[1] + piece.y > 5 || position[2] + piece.z < -5 || position[2] + piece.z > 5)
             {
-                std::cout << "collision" << point[0] + piece.x << " " << point[1] + piece.y << " " << point[2] + piece.z << std::endl;
                 return true;
             }
         }
     }
-    // tester qu'aucune case de la pièce ne soit déjà occupée par une autre pièce, en prenant compte de la position x,y,z de la pièce sans comparer une pièce avec elle-même
-    for (int i = 0; i < pieces.size() - 1; i++)
+    for (int i = 0; i < pieces.size(); i++)
     {
-        for (int j = i + 1; j < pieces.size(); j++)
+        for (int j = 0; j < pieces.size(); j++)
         {
-            for (const auto &point : pieces[i].matrix)
+            if (i != j)
             {
-                for (const auto &point2 : pieces[j].matrix)
+                for (const auto &point : pieces[i].matrix)
                 {
-                    if (point[0] + pieces[i].x == point2[0] + pieces[j].x && point[1] + pieces[i].y == point2[1] + pieces[j].y && point[2] + pieces[i].z == point2[2] + pieces[j].z)
+                    for (const auto &point2 : pieces[j].matrix) // on compare chaque point de la pièce avec chaque point de la pièce suivante en prenant en compte la position de la pièce et sa rotation
                     {
-                        std::cout << "collision entre piece " << point[0] + pieces[i].x << " " << point[1] + pieces[i].y << " " << point[2] + pieces[i].z << std::endl;
-                        return true;
+                        int *position = calculePositionPiece(pieces[i], &point - &pieces[i].matrix[0]);
+
+                        int *position2 = calculePositionPiece(pieces[j], &point2 - &pieces[j].matrix[0]);
+
+                        if (position[0] + pieces[i].x == position2[0] + pieces[j].x && position[1] + pieces[i].y == position2[1] + pieces[j].y && position[2] + pieces[i].z == position2[2] + pieces[j].z)
+                        {
+                            return true;
+                        }
                     }
                 }
             }
         }
     }
-
     return false;
 }
 
@@ -62,12 +75,12 @@ void init()
     srand(time(0));
 }
 
-void createNewPiece()
+void createNewPiece(std::vector<TetrisPiece> &pieces)
 {
     TetrisPiece newPiece;
-    newPiece.x = 0.0;
-    newPiece.y = 0.0;
-    newPiece.z = 0.0;
+    newPiece.x = 0;
+    newPiece.y = 0;
+    newPiece.z = 0;
     newPiece.type = rand() % 7;
     int color = rand() % 7;
     switch (color)
@@ -109,7 +122,6 @@ void createNewPiece()
         break;
     }
     std::cout << newPiece.type << std::endl;
-    newPiece.type = 0;
     newPiece.rotationX = 0.0;
     newPiece.rotationZ = 0.0;
 
@@ -139,6 +151,10 @@ void createNewPiece()
     }
 
     pieces.push_back(newPiece);
+    if (testCollision(pieces))
+    {
+        std::cout << "game over" << std::endl; // impossible de faire spawn en respectant les collisions
+    }
 }
 
 void display()
@@ -180,7 +196,7 @@ void keyboard(unsigned char key, int x, int y)
     switch (key)
     {
     case 'p':
-        createNewPiece();
+        createNewPiece(pieces);
         break;
     case 'z':
         if (pieces.empty())
@@ -249,7 +265,7 @@ void keyboard(unsigned char key, int x, int y)
             if (testCollision(pieces))
             {
                 lastPiece.y += 1;
-                createNewPiece();
+                createNewPiece(pieces);
             }
         }
         break;
