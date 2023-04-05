@@ -6,6 +6,7 @@
 #include <ctime>
 #include <iostream>
 #include <cmath>
+#include <algorithm>
 
 struct TetrisPiece
 {
@@ -18,8 +19,11 @@ struct TetrisPiece
 
 std::vector<TetrisPiece> pieces;
 
+std::vector<int> sacPiece = {0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6};
+std::vector<int> sacCouleur = {0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6};
+
 // dimensions du terrain de jeu
-int terrainDim[3][2] = {{-3, 3}, {-6, 6}, {-3, 4}};
+int terrainDim[3][2] = {{-2, 3}, {-5, 6}, {-2, 2}};
 
 int *calculePositionPiece(TetrisPiece piece, int point)
 {
@@ -29,11 +33,11 @@ int *calculePositionPiece(TetrisPiece piece, int point)
     int cosZ = cos(piece.rotationZ * M_PI / 180);
     int sinZ = sin(piece.rotationZ * M_PI / 180);
 
-    std ::cout << piece.rotationX << " " << piece.rotationZ << std::endl;
+    // std ::cout << piece.rotationX << " " << piece.rotationZ << std::endl;
     position[0] = piece.x + piece.matrix[point][0] * cosZ - piece.matrix[point][1] * sinZ;
     position[1] = piece.y + piece.matrix[point][0] * sinZ * cosX + piece.matrix[point][1] * cosX * cosZ - piece.matrix[point][2] * sinX;
     position[2] = piece.z + piece.matrix[point][0] * sinX * sinZ + piece.matrix[point][1] * sinX * cosZ + piece.matrix[point][2] * cosX;
-    std::cout << position[0] << " " << position[1] << " " << position[2] << std::endl;
+    // std::cout << position[0] << " " << position[1] << " " << position[2] << std::endl;
     return position;
 }
 
@@ -90,8 +94,19 @@ void createNewPiece(std::vector<TetrisPiece> &pieces)
     newPiece.x = 0;
     newPiece.y = 0;
     newPiece.z = 0;
-    newPiece.type = rand() % 7;
-    int color = rand() % 7;
+    if (sacPiece.size() == 0)
+    {
+        sacPiece = {0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6};
+        sacCouleur = {0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6};
+    }
+
+    int h = rand() % sacPiece.size();
+    newPiece.type = sacPiece[h];
+    sacPiece.erase(sacPiece.begin() + h);
+    h = rand() % sacCouleur.size();
+    int color = sacCouleur[h];
+    sacCouleur.erase(sacCouleur.begin() + h);
+
     switch (color)
     {
     case 0:
@@ -134,28 +149,56 @@ void createNewPiece(std::vector<TetrisPiece> &pieces)
     newPiece.rotationX = 0.0;
     newPiece.rotationZ = 0.0;
 
-    switch (newPiece.type)
+    switch (newPiece.type) // on définit la matrice de la pièce en fonction de son type, on essaie de faire en sorte que les pièces soient centrées
     {
-    case 0: // J
-        newPiece.matrix = {{0, 0, 0}, {1, 0, 0}, {1, 1, 0}, {1, 2, 0}};
+    case 0: // I
+        newPiece.matrix = {
+            {0, 0, 0},
+            {0, 1, 0},
+            {0, 2, 0},
+            {0, -1, 0}};
         break;
-    case 1: // L
-        newPiece.matrix = {{0, 0, 0}, {0, 1, 0}, {0, 2, 0}, {1, 2, 0}};
+    case 1: // O
+        newPiece.matrix = {
+            {0, 0, 0},
+            {0, 1, 0},
+            {1, 0, 0},
+            {1, 1, 0}};
         break;
-    case 2: // O
-        newPiece.matrix = {{0, 0, 0}, {0, 1, 0}, {1, 0, 0}, {1, 1, 0}};
+    case 2: // T
+        newPiece.matrix = {
+            {0, 0, 0},
+            {0, 1, 0},
+            {0, -1, 0},
+            {1, 0, 0}};
         break;
     case 3: // S
-        newPiece.matrix = {{0, 0, 0}, {0, 1, 0}, {1, 1, 0}, {1, 2, 0}};
+        newPiece.matrix = {
+            {0, 0, 0},
+            {0, 1, 0},
+            {1, 0, 0},
+            {1, -1, 0}};
         break;
-    case 4: // T
-        newPiece.matrix = {{0, 0, 0}, {1, 0, 0}, {1, 1, 0}, {2, 0, 0}};
+    case 4: // Z
+        newPiece.matrix = {
+            {0, 0, 0},
+            {0, 1, 0},
+            {1, 1, 0},
+            {1, 0, 0}};
         break;
-    case 5: // Z
-        newPiece.matrix = {{0, 0, 0}, {0, 1, 0}, {1, 1, 0}, {1, 2, 0}};
+    case 5: // J
+        newPiece.matrix = {
+            {0, 0, 0},
+            {0, 1, 0},
+            {0, -1, 0},
+            {1, -1, 0}};
         break;
-    case 6: // I
-        newPiece.matrix = {{0, 0, 0}, {0, 1, 0}, {0, 2, 0}, {0, 3, 0}};
+    case 6: // L
+        newPiece.matrix = {
+            {0, 0, 0},
+            {0, 1, 0},
+            {0, -1, 0},
+            {1, 1, 0}};
         break;
     }
 
@@ -164,6 +207,10 @@ void createNewPiece(std::vector<TetrisPiece> &pieces)
     {
         std::cout << "game over" << std::endl; // impossible de faire spawn en respectant les collisions => FINB DE PARTIE
         pieces.erase(pieces.begin(), pieces.end() - 1);
+        sacPiece = {0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6};
+        sacPiece.erase(std::find(sacPiece.begin(), sacPiece.end(), newPiece.type));
+        sacCouleur = {0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6};
+        sacCouleur.erase(std::find(sacCouleur.begin(), sacCouleur.end(), color));
     }
 }
 
@@ -172,7 +219,7 @@ void display()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 
-    gluLookAt(5, 10, 10, 0, 0, 0, 0, 1, 0);
+    gluLookAt(4, 10, 4, -2, -10, -2, 0, 1, 0);
 
     for (const auto &piece : pieces)
     {
@@ -230,6 +277,7 @@ void display()
             glPopMatrix();
         }
     }
+
     glutSwapBuffers();
 }
 void keyboard(unsigned char key, int x, int y)
@@ -312,6 +360,29 @@ void keyboard(unsigned char key, int x, int y)
             }
         }
         break;
+    case 27: // ASCII code for escape
+        exit(0);
+        break;
+
+    case 'r':
+        pieces.erase(pieces.begin(), pieces.end());
+        break;
+
+    case 'f':
+        if (pieces.empty())
+        {
+            return;
+        }
+        else
+        {
+            while (!testCollision(pieces))
+            {
+                lastPiece.y -= 1;
+            }
+            lastPiece.y += 1;
+            createNewPiece(pieces);
+        }
+        break;
     }
 
     // Ajouter ici les touches pour déplacer et faire pivoter les pièces
@@ -330,17 +401,17 @@ void specialKeyboard(int key, int x, int y)
     switch (key)
     {
     case GLUT_KEY_UP:
-        lastPiece.z += 1;
-        if (testCollision(pieces))
-        {
-            lastPiece.z -= 1;
-        }
-        break;
-    case GLUT_KEY_DOWN:
         lastPiece.z -= 1;
         if (testCollision(pieces))
         {
             lastPiece.z += 1;
+        }
+        break;
+    case GLUT_KEY_DOWN:
+        lastPiece.z += 1;
+        if (testCollision(pieces))
+        {
+            lastPiece.z -= 1;
         }
         break;
     case GLUT_KEY_LEFT:
