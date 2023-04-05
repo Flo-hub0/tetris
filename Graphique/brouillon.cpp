@@ -71,7 +71,7 @@ int main()
     printMatrix(matrix);
     std::cout << std::endl;
     std::cout << "Neighbours" << std::endl;
-    std::vector<std::vector<std::vector<int>>> neighbours = groupPoints(matrix);
+    std::vector<std::vector<std::vector<int>>> neighbours = separerPiece(matrix);
     printMatrix(neighbours);
 
     return 0;

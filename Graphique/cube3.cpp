@@ -23,6 +23,50 @@ std::vector<TetrisPiece> pieces;
 std::vector<int> sacPiece = {0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6};
 std::vector<int> sacCouleur = {0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6};
 
+std::vector<int> decalageScore = {-3, -12, -14};
+
+std::vector<std::vector<int>> genererChiffre(int chiffre)
+{
+    std::vector<std::vector<int>> listePoints;
+
+    switch (chiffre)
+    {
+    case 0:
+        listePoints = {{-1, -1, -1}, {0, -1, -1}, {1, -1, -1}, {2, -1, -1}, {3, -1, -1}, {4, -1, -1}, {-1, 0, -1}, {4, 0, -1}, {-1, 1, -1}, {4, 1, -1}, {-1, 2, -1}, {4, 2, -1}, {-1, 3, -1}, {4, 3, -1}, {-1, 4, -1}, {0, 4, -1}, {1, 4, -1}, {2, 4, -1}, {3, 4, -1}, {4, 4, -1}};
+        break;
+    case 1:
+        listePoints = {{1, -1, -1}, {2, -1, -1}, {2, 0, -1}, {2, 1, -1}, {1, 2, -1}, {2, 2, -1}, {3, 2, -1}, {4, 2, -1}};
+        break;
+    case 2:
+        listePoints = {{-1, -1, -1}, {0, -1, -1}, {1, -1, -1}, {2, -1, -1}, {3, -1, -1}, {4, -1, -1}, {4, 0, -1}, {-1, 1, -1}, {4, 1, -1}, {-1, 2, -1}, {3, 2, -1}, {-1, 3, -1}, {2, 3, -1}, {-1, 4, -1}, {1, 4, -1}, {0, 4, -1}};
+        break;
+    case 3:
+        listePoints = {{-1, -1, -1}, {0, -1, -1}, {1, -1, -1}, {2, -1, -1}, {3, -1, -1}, {4, -1, -1}, {4, 0, -1}, {-1, 1, -1}, {4, 1, -1}, {4, 2, -1}, {-1, 3, -1}, {4, 3, -1}, {-1, 4, -1}, {0, 4, -1}, {1, 4, -1}, {2, 4, -1}, {3, 4, -1}};
+        break;
+    case 4:
+        listePoints = {{4, -1, -1}, {3, 0, -1}, {2, 1, -1}, {1, 2, -1}, {2, 2, -1}, {3, 2, -1}, {4, 2, -1}, {2, 3, -1}, {2, 4, -1}};
+        break;
+    case 5:
+        listePoints = {{-1, -1, -1}, {0, -1, -1}, {1, -1, -1}, {2, -1, -1}, {3, -1, -1}, {4, -1, -1}, {-1, 0, -1}, {-1, 1, -1}, {4, 1, -1}, {4, 2, -1}, {-1, 3, -1}, {4, 3, -1}, {-1, 4, -1}, {0, 4, -1}, {1, 4, -1}, {2, 4, -1}, {3, 4, -1}, {4, 4, -1}};
+        break;
+    case 6:
+        listePoints = {{-1, -1, -1}, {0, -1, -1}, {1, -1, -1}, {2, -1, -1}, {3, -1, -1}, {4, -1, -1}, {-1, 0, -1}, {-1, 1, -1}, {4, 1, -1}, {-1, 2, -1}, {4, 2, -1}, {-1, 3, -1}, {4, 3, -1}, {-1, 4, -1}, {0, 4, -1}, {1, 4, -1}, {2, 4, -1}, {3, 4, -1}, {4, 4, -1}};
+        break;
+    case 7:
+        listePoints = {{-1, -1, -1}, {0, -1, -1}, {1, -1, -1}, {2, -1, -1}, {3, -1, -1}, {4, -1, -1}, {4, 0, -1}, {3, 1, -1}, {2, 2, -1}, {1, 3, -1}, {0, 4, -1}};
+        break;
+    case 8:
+        listePoints = {{-1, -1, -1}, {0, -1, -1}, {1, -1, -1}, {2, -1, -1}, {3, -1, -1}, {4, -1, -1}, {-1, 0, -1}, {4, 0, -1}, {-1, 1, -1}, {4, 1, -1}, {-1, 2, -1}, {4, 2, -1}, {-1, 3, -1}, {4, 3, -1}, {-1, 4, -1}, {0, 4, -1}, {1, 4, -1}, {2, 4, -1}, {3, 4, -1}, {4, 4, -1}, {0, 2, -1}, {1, 2, -1}, {2, 2, -1}, {3, 2, -1}};
+        break;
+    case 9:
+        listePoints = {{-1, -1, -1}, {0, -1, -1}, {1, -1, -1}, {2, -1, -1}, {3, -1, -1}, {4, -1, -1}, {-1, 0, -1}, {0, 0, -1}, {1, 0, -1}, {2, 0, -1}, {3, 0, -1}, {4, 0, -1}, {4, 1, -1}, {-1, 2, -1}, {4, 2, -1}, {-1, 3, -1}, {4, 3, -1}, {-1, 4, -1}, {0, 4, -1}, {1, 4, -1}, {2, 4, -1}, {3, 4, -1}, {4, 4, -1}};
+        break;
+    default:
+        std::cout << "Chiffre invalide" << std::endl;
+        break;
+    }
+    return listePoints;
+}
 int Score = 0;
 double distance(std::vector<int> a, std::vector<int> b)
 {
@@ -75,6 +119,7 @@ int *calculePositionPiece(TetrisPiece piece, int point)
     // std::cout << position[0] << " " << position[1] << " " << position[2] << std::endl;
     return position;
 }
+
 bool testCollision(std::vector<TetrisPiece> pieces)
 {
 
@@ -465,6 +510,15 @@ void display()
             glPopMatrix();
         }
         pieces.push_back(saveLastPiece);
+    }
+    // afficher le score
+    std::vector<std::vector<int>> score = genererChiffre(Score);
+    for (const auto &point : score)
+    {
+        glPushMatrix();
+        glTranslatef(point[0] + decalageScore[0], point[1] + decalageScore[1], point[2] + decalageScore[2]);
+        glutSolidCube(1);
+        glPopMatrix();
     }
 
     glutSwapBuffers();
