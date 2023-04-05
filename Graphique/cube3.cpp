@@ -23,9 +23,10 @@ std::vector<TetrisPiece> pieces;
 std::vector<int> sacPiece = {0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6};
 std::vector<int> sacCouleur = {0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6};
 
+int Score = 0;
+
 // dimensions du terrain de jeu
 int terrainDim[3][2] = {{-2, 3}, {-5, 6}, {-2, 2}};
-
 int *calculePositionPiece(TetrisPiece piece, int point)
 {
     int *position = new int[3];
@@ -40,6 +41,82 @@ int *calculePositionPiece(TetrisPiece piece, int point)
     position[2] = piece.z + piece.matrix[point][0] * sinX * sinZ + piece.matrix[point][1] * sinX * cosZ + piece.matrix[point][2] * cosX;
     // std::cout << position[0] << " " << position[1] << " " << position[2] << std::endl;
     return position;
+}
+
+void testPlanTermine(std::vector<TetrisPiece> &pieces)
+{
+    int nbligne = 0;
+    int terrain[terrainDim[0][1] - terrainDim[0][0] + 1][terrainDim[1][1] - terrainDim[1][0] + 1][terrainDim[2][1] - terrainDim[2][0] + 1];
+    for (int i = 0; i < terrainDim[0][1] - terrainDim[0][0] + 1; i++)
+    {
+        for (int j = 0; j < terrainDim[1][1] - terrainDim[1][0] + 1; j++)
+        {
+            for (int k = 0; k < terrainDim[2][1] - terrainDim[2][0] + 1; k++)
+            {
+                terrain[i][j][k] = 0;
+            }
+        }
+    }
+    for (const auto &piece : pieces)
+    {
+        for (const auto &point : piece.matrix)
+        {
+            int *position = calculePositionPiece(piece, &point - &piece.matrix[0]);
+            terrain[position[0] - terrainDim[0][0]][position[1] - terrainDim[1][0]][position[2] - terrainDim[2][0]] = 1;
+        }
+    }
+    for (int j = terrainDim[1][1] - terrainDim[1][0]; j >= 0; j--)
+    {
+        bool planTermine = true;
+        for (int i = 0; i < terrainDim[0][1] - terrainDim[0][0] + 1; i++)
+        {
+            for (int k = 0; k < terrainDim[2][1] - terrainDim[2][0] + 1; k++)
+            {
+                if (terrain[i][j][k] == 0)
+                {
+                    planTermine = false;
+                }
+            }
+        }
+        if (planTermine)
+        {
+            nbligne++;
+            for (int i = 0; i < pieces.size(); i++)
+            {
+                for (int k = 0; k < pieces[i].matrix.size(); k++)
+                {
+                    int *position = calculePositionPiece(pieces[i], k);
+                    if (position[1] == j + terrainDim[1][0])
+                    {
+                        pieces[i].matrix.erase(pieces[i].matrix.begin() + k);
+                        k--;
+                    }
+                }
+            }
+
+            for (int i = 0; i < pieces.size(); i++)
+            {
+                for (int k = 0; k < pieces[i].matrix.size(); k++)
+                {
+                    int *position = calculePositionPiece(pieces[i], k);
+                    if (position[1] > j + terrainDim[1][0])
+                    {
+                        pieces[i].y--;
+                    }
+                }
+            }
+
+            for (int i = 0; i < pieces.size(); i++)
+            {
+                if (pieces[i].matrix.size() == 0)
+                {
+                    pieces.erase(pieces.begin() + i);
+                    i--;
+                }
+            }
+        }
+    }
+    Score += nbligne * nbligne;
 }
 
 bool testCollision(std::vector<TetrisPiece> pieces)
@@ -87,6 +164,7 @@ void init()
     glClearColor(0.0, 0.0, 0.0, 1.0);
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_MULTISAMPLE);
+    glEnable(GL_BLEND);
     srand(time(0));
 }
 
@@ -150,6 +228,9 @@ void createNewPiece(std::vector<TetrisPiece> &pieces)
     std::cout << newPiece.type << std::endl;
     newPiece.rotationX = 0.0;
     newPiece.rotationZ = 0.0;
+
+    // pour test les plans finis
+    newPiece.type = 1;
 
     switch (newPiece.type)
     {
@@ -411,6 +492,7 @@ void keyboard(unsigned char key, int x, int y)
             if (testCollision(pieces))
             {
                 lastPiece.y += 1;
+                testPlanTermine(pieces);
                 createNewPiece(pieces);
             }
         }
@@ -435,6 +517,7 @@ void keyboard(unsigned char key, int x, int y)
                 lastPiece.y -= 1;
             }
             lastPiece.y += 1;
+            testPlanTermine(pieces);
             createNewPiece(pieces);
         }
         break;
