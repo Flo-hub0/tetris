@@ -13,18 +13,24 @@ struct TetrisPiece
     int type; // on ne s'en sert pas en vrai
     float colorR, colorG, colorB;
     std::vector<std::vector<int>> matrix;
-    float rotationX, rotationZ;
+    int rotationX, rotationZ;
 };
 
 std::vector<TetrisPiece> pieces;
 
-int *calculePositionPiece(TetrisPiece piece, int point) // on calcule la position du point en fonction de la pièce et de sa rotation
+int *calculePositionPiece(TetrisPiece piece, int point) // on calcule la position du point en fonction de la pièce de sa rotation et de la position du bloc sur la grille
 {
     int *position = new int[3];
-    position[0] = piece.matrix[point][0] * cos(piece.rotationZ) - piece.matrix[point][1] * sin(piece.rotationZ);
-    position[1] = piece.matrix[point][0] * sin(piece.rotationZ) + piece.matrix[point][1] * cos(piece.rotationZ);
-    position[2] = piece.matrix[point][2];
+    int cosX = cos(piece.rotationX * M_PI / 180);
+    int sinX = sin(piece.rotationX * M_PI / 180);
+    int cosZ = cos(piece.rotationZ * M_PI / 180);
+    int sinZ = sin(piece.rotationZ * M_PI / 180);
 
+    std ::cout << piece.rotationX << " " << piece.rotationZ << std::endl;
+    position[0] = piece.x + piece.matrix[point][0] * cosZ - piece.matrix[point][1] * sinZ;
+    position[1] = piece.y + piece.matrix[point][0] * sinZ * cosX + piece.matrix[point][1] * cosX * cosZ - piece.matrix[point][2] * sinX;
+    position[2] = piece.z + piece.matrix[point][0] * sinX * sinZ + piece.matrix[point][1] * sinX * cosZ + piece.matrix[point][2] * cosX;
+    std::cout << position[0] << " " << position[1] << " " << position[2] << std::endl;
     return position;
 }
 
@@ -36,7 +42,7 @@ bool testCollision(std::vector<TetrisPiece> pieces)
         for (const auto &point : piece.matrix)
         {
             int *position = calculePositionPiece(piece, &point - &piece.matrix[0]);
-            if (position[0] + piece.x < -5 || position[0] + piece.x > 5 || position[1] + piece.y < -5 || position[1] + piece.y > 5 || position[2] + piece.z < -5 || position[2] + piece.z > 5)
+            if (position[0] < -5 || position[0] > 5 || position[1] < -5 || position[1] > 5 || position[2] < -5 || position[2] > 5)
             {
                 return true;
             }
@@ -56,7 +62,7 @@ bool testCollision(std::vector<TetrisPiece> pieces)
 
                         int *position2 = calculePositionPiece(pieces[j], &point2 - &pieces[j].matrix[0]);
 
-                        if (position[0] + pieces[i].x == position2[0] + pieces[j].x && position[1] + pieces[i].y == position2[1] + pieces[j].y && position[2] + pieces[i].z == position2[2] + pieces[j].z)
+                        if (position[0] == position2[0] && position[1] == position2[1] && position[2] == position2[2])
                         {
                             return true;
                         }
@@ -153,7 +159,7 @@ void createNewPiece(std::vector<TetrisPiece> &pieces)
     pieces.push_back(newPiece);
     if (testCollision(pieces))
     {
-        std::cout << "game over" << std::endl; // impossible de faire spawn en respectant les collisions
+        std::cout << "game over" << std::endl; // impossible de faire spawn en respectant les collisions => FINB DE PARTIE
     }
 }
 
@@ -174,6 +180,7 @@ void display()
         glTranslatef(piece.x, piece.y, piece.z);
         glRotatef(piece.rotationX, 1, 0, 0);
         glRotatef(piece.rotationZ, 0, 0, 1);
+        glColor3f(piece.colorR, piece.colorG, piece.colorB);
 
         for (const auto &coord : piece.matrix)
         {
