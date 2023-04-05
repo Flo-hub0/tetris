@@ -42,7 +42,7 @@ bool testCollision(std::vector<TetrisPiece> pieces)
         for (const auto &point : piece.matrix)
         {
             int *position = calculePositionPiece(piece, &point - &piece.matrix[0]);
-            if (position[0] < -5 || position[0] > 5 || position[1] < -5 || position[1] > 5 || position[2] < -5 || position[2] > 5)
+            if (position[0] < -4 || position[0] > 4 || position[1] < -5 || position[2] < -4 || position[2] > 4)
             {
                 return true;
             }
@@ -169,30 +169,53 @@ void display()
     glLoadIdentity();
 
     gluLookAt(5, 10, 10, 0, 0, 0, 0, 1, 0);
-    if (pieces.size() > 0)
-    {
-        std::cout << pieces[pieces.size() - 1].type << std::endl;
-    }
 
-    for (const auto &piece : pieces)
+    for (const auto &piece : pieces) // on affiche chaque pièce en ajoutant un contour noir
     {
-        glPushMatrix();
-        glTranslatef(piece.x, piece.y, piece.z);
-        glRotatef(piece.rotationX, 1, 0, 0);
-        glRotatef(piece.rotationZ, 0, 0, 1);
         glColor3f(piece.colorR, piece.colorG, piece.colorB);
-
-        for (const auto &coord : piece.matrix)
+        for (const auto &point : piece.matrix)
         {
+            int *position = calculePositionPiece(piece, &point - &piece.matrix[0]);
             glPushMatrix();
-            glTranslatef(coord[0], coord[1], coord[2]);
+            glTranslatef(position[0], position[1], position[2]);
             glutSolidCube(1);
-            glColor3f(piece.colorR, piece.colorG, piece.colorB);
-
             glPopMatrix();
         }
-        glPopMatrix();
+        glColor3f(0.0, 0.0, 0.0);
+        for (const auto &point : piece.matrix)
+        {
+            int *position = calculePositionPiece(piece, &point - &piece.matrix[0]);
+            glPushMatrix();
+            glTranslatef(position[0], position[1], position[2]);
+            glutWireCube(1);
+            glPopMatrix();
+        }
     }
+    // On ajoute le fond de la grille en fil de fer
+    glColor3f(0.5, 0.5, 0.5);
+    for (int i = -4; i <= 4; i++)
+    {
+        for (int j = -4; j <= 4; j++)
+        {
+            glPushMatrix();
+            glTranslatef(i, -6, j);
+            glutWireCube(1);
+            glPopMatrix();
+        }
+    }
+    // on ajoute des lignes pour mieux voir les cubes
+    glColor3f(0.0, 0.0, 0.0);
+    for (int i = -4; i <= 4; i++)
+    {
+        for (int j = -4; j <= 4; j++)
+        {
+            glPushMatrix();
+            glTranslatef(i, -6, j);
+            glutWireCube(1);
+            glPopMatrix();
+        }
+    }
+
     glutSwapBuffers();
 }
 
