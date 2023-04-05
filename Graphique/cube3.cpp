@@ -6,7 +6,7 @@
 #include <ctime>
 #include <iostream>
 #include <cmath>
-// Structure pour décrire une pièce de Tetris
+
 struct TetrisPiece
 {
     int x, y, z;
@@ -18,7 +18,10 @@ struct TetrisPiece
 
 std::vector<TetrisPiece> pieces;
 
-int *calculePositionPiece(TetrisPiece piece, int point) // on calcule la position du point en fonction de la pièce de sa rotation et de la position du bloc sur la grille
+// dimensions du terrain de jeu
+int terrainDim[3][2] = {{-3, 3}, {-6, 6}, {-3, 4}};
+
+int *calculePositionPiece(TetrisPiece piece, int point)
 {
     int *position = new int[3];
     int cosX = cos(piece.rotationX * M_PI / 180);
@@ -42,7 +45,7 @@ bool testCollision(std::vector<TetrisPiece> pieces)
         for (const auto &point : piece.matrix)
         {
             int *position = calculePositionPiece(piece, &point - &piece.matrix[0]);
-            if (position[0] < -4 || position[0] > 4 || position[1] < -5 || position[2] < -4 || position[2] > 4)
+            if (position[0] < terrainDim[0][0] || position[0] > terrainDim[0][1] || position[1] < terrainDim[1][0] || position[1] > terrainDim[1][1] || position[2] < terrainDim[2][0] || position[2] > terrainDim[2][1])
             {
                 return true;
             }
@@ -56,7 +59,7 @@ bool testCollision(std::vector<TetrisPiece> pieces)
             {
                 for (const auto &point : pieces[i].matrix)
                 {
-                    for (const auto &point2 : pieces[j].matrix) // on compare chaque point de la pièce avec chaque point de la pièce suivante en prenant en compte la position de la pièce et sa rotation
+                    for (const auto &point2 : pieces[j].matrix)
                     {
                         int *position = calculePositionPiece(pieces[i], &point - &pieces[i].matrix[0]);
 
@@ -160,6 +163,7 @@ void createNewPiece(std::vector<TetrisPiece> &pieces)
     if (testCollision(pieces))
     {
         std::cout << "game over" << std::endl; // impossible de faire spawn en respectant les collisions => FINB DE PARTIE
+        pieces.erase(pieces.begin(), pieces.end() - 1);
     }
 }
 
@@ -170,7 +174,7 @@ void display()
 
     gluLookAt(5, 10, 10, 0, 0, 0, 0, 1, 0);
 
-    for (const auto &piece : pieces) // on affiche chaque pièce en ajoutant un contour noir
+    for (const auto &piece : pieces)
     {
         glColor3f(piece.colorR, piece.colorG, piece.colorB);
         for (const auto &point : piece.matrix)
@@ -181,7 +185,7 @@ void display()
             glutSolidCube(1);
             glPopMatrix();
         }
-        glColor3f(0.0, 0.0, 0.0);
+        glColor3f(0.0, 0.0, 0.0); // pour le fil de fer autour des cubes
         for (const auto &point : piece.matrix)
         {
             int *position = calculePositionPiece(piece, &point - &piece.matrix[0]);
@@ -191,34 +195,43 @@ void display()
             glPopMatrix();
         }
     }
-    // On ajoute le fond de la grille en fil de fer
-    glColor3f(0.5, 0.5, 0.5);
-    for (int i = -4; i <= 4; i++)
+
+    glColor3f(0.5, 0.5, 0.5); // sol
+    for (int i = terrainDim[0][0]; i <= terrainDim[0][1]; i++)
     {
-        for (int j = -4; j <= 4; j++)
+        for (int j = terrainDim[2][0]; j <= terrainDim[2][1]; j++)
         {
             glPushMatrix();
-            glTranslatef(i, -6, j);
-            glutWireCube(1);
-            glPopMatrix();
-        }
-    }
-    // on ajoute des lignes pour mieux voir les cubes
-    glColor3f(0.0, 0.0, 0.0);
-    for (int i = -4; i <= 4; i++)
-    {
-        for (int j = -4; j <= 4; j++)
-        {
-            glPushMatrix();
-            glTranslatef(i, -6, j);
+            glTranslatef(i, terrainDim[1][0] - 1, j);
+
             glutWireCube(1);
             glPopMatrix();
         }
     }
 
+    if (!pieces.empty())
+    {
+        TetrisPiece &lastPiece = pieces.back();
+        for (const auto &point : lastPiece.matrix)
+        {
+
+            int *position = calculePositionPiece(lastPiece, &point - &lastPiece.matrix[0]);
+            glPushMatrix();
+            glTranslatef(position[0], terrainDim[1][0] - 1, position[2]);
+            glutSolidCube(1);
+            glPopMatrix();
+            glPushMatrix();
+            glTranslatef(position[0], position[1], terrainDim[2][0] - 1);
+            glutSolidCube(1);
+            glPopMatrix();
+            glPushMatrix();
+            glTranslatef(terrainDim[0][0] - 1, position[1], position[2]);
+            glutSolidCube(1);
+            glPopMatrix();
+        }
+    }
     glutSwapBuffers();
 }
-
 void keyboard(unsigned char key, int x, int y)
 {
     TetrisPiece &lastPiece = pieces.back();
@@ -354,7 +367,7 @@ void reshape(int w, int h)
     glViewport(0, 0, w, h);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluPerspective(45, (float)w / h, 0.1, 100);
+    gluPerspective(55, (float)w / h, 0.1, 100);
     glMatrixMode(GL_MODELVIEW);
 }
 
