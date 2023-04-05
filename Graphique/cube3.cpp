@@ -16,6 +16,7 @@ struct TetrisPiece
     std::vector<std::vector<int>> matrix;
     int rotationX, rotationZ;
 };
+// fonction qui calcule une piece si elle descendait tout en bas
 
 std::vector<TetrisPiece> pieces;
 
@@ -85,6 +86,7 @@ void init()
 {
     glClearColor(0.0, 0.0, 0.0, 1.0);
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_MULTISAMPLE);
     srand(time(0));
 }
 
@@ -149,56 +151,56 @@ void createNewPiece(std::vector<TetrisPiece> &pieces)
     newPiece.rotationX = 0.0;
     newPiece.rotationZ = 0.0;
 
-    switch (newPiece.type) // on définit la matrice de la pièce en fonction de son type, on essaie de faire en sorte que les pièces soient centrées
+    switch (newPiece.type)
     {
     case 0: // I
         newPiece.matrix = {
+            {0, 0, -1},
             {0, 0, 0},
-            {0, 1, 0},
-            {0, 2, 0},
-            {0, -1, 0}};
+            {0, 0, 1},
+            {0, 0, 2}};
         break;
     case 1: // O
         newPiece.matrix = {
             {0, 0, 0},
-            {0, 1, 0},
+            {0, 0, 1},
             {1, 0, 0},
-            {1, 1, 0}};
+            {1, 0, 1}};
         break;
     case 2: // T
         newPiece.matrix = {
             {0, 0, 0},
-            {0, 1, 0},
-            {0, -1, 0},
+            {0, 0, 1},
+            {-1, 0, 0},
             {1, 0, 0}};
         break;
     case 3: // S
         newPiece.matrix = {
             {0, 0, 0},
-            {0, 1, 0},
-            {1, 0, 0},
-            {1, -1, 0}};
+            {0, 0, 1},
+            {1, 0, 1},
+            {-1, 0, 0}};
         break;
     case 4: // Z
         newPiece.matrix = {
             {0, 0, 0},
-            {0, 1, 0},
-            {1, 1, 0},
+            {-1, 0, 1},
+            {0, 0, 1},
             {1, 0, 0}};
         break;
     case 5: // J
         newPiece.matrix = {
             {0, 0, 0},
-            {0, 1, 0},
-            {0, -1, 0},
-            {1, -1, 0}};
+            {-1, 0, 0},
+            {-1, 0, -1},
+            {1, 0, 0}};
         break;
     case 6: // L
         newPiece.matrix = {
             {0, 0, 0},
-            {0, 1, 0},
-            {0, -1, 0},
-            {1, 1, 0}};
+            {-1, 0, 0},
+            {1, 0, 0},
+            {1, 0, -1}};
         break;
     }
 
@@ -212,6 +214,35 @@ void createNewPiece(std::vector<TetrisPiece> &pieces)
         sacCouleur = {0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6};
         sacCouleur.erase(std::find(sacCouleur.begin(), sacCouleur.end(), color));
     }
+}
+
+bool testCollision(std::vector<TetrisPiece> pieces, TetrisPiece lastPiece)
+{
+    for (const auto &piece : pieces)
+    {
+        for (const auto &point : piece.matrix)
+        {
+            int *position = calculePositionPiece(piece, &point - &piece.matrix[0]);
+            for (const auto &point2 : lastPiece.matrix)
+            {
+                int *position2 = calculePositionPiece(lastPiece, &point2 - &lastPiece.matrix[0]);
+                if (position[0] == position2[0] && position[1] == position2[1] && position[2] == position2[2])
+                {
+                    return true;
+                }
+            }
+        }
+    }
+    // ou avec le bord du terrain
+    for (const auto &point2 : lastPiece.matrix)
+    {
+        int *position2 = calculePositionPiece(lastPiece, &point2 - &lastPiece.matrix[0]);
+        if (position2[0] < terrainDim[0][0] || position2[0] > terrainDim[0][1] || position2[1] < terrainDim[1][0] || position2[1] > terrainDim[1][1] || position2[2] < terrainDim[2][0] || position2[2] > terrainDim[2][1])
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
 void display()
@@ -238,12 +269,12 @@ void display()
             int *position = calculePositionPiece(piece, &point - &piece.matrix[0]);
             glPushMatrix();
             glTranslatef(position[0], position[1], position[2]);
-            glutWireCube(1);
+            glutWireCube(1.01);
             glPopMatrix();
         }
     }
 
-    glColor3f(0.5, 0.5, 0.5); // sol
+    glColor3f(0.2, 0.2, 0.2); // sol
     for (int i = terrainDim[0][0]; i <= terrainDim[0][1]; i++)
     {
         for (int j = terrainDim[2][0]; j <= terrainDim[2][1]; j++)
@@ -255,7 +286,7 @@ void display()
             glPopMatrix();
         }
     }
-
+    glColor3f(0.6, 0.6, 0.6);
     if (!pieces.empty())
     {
         TetrisPiece &lastPiece = pieces.back();
@@ -265,21 +296,45 @@ void display()
             int *position = calculePositionPiece(lastPiece, &point - &lastPiece.matrix[0]);
             glPushMatrix();
             glTranslatef(position[0], terrainDim[1][0] - 1, position[2]);
-            glutSolidCube(1);
+            glutSolidCube(0.98);
             glPopMatrix();
             glPushMatrix();
             glTranslatef(position[0], position[1], terrainDim[2][0] - 1);
-            glutSolidCube(1);
+            glutSolidCube(0.98);
             glPopMatrix();
             glPushMatrix();
             glTranslatef(terrainDim[0][0] - 1, position[1], position[2]);
-            glutSolidCube(1);
+            glutSolidCube(0.98);
             glPopMatrix();
         }
+    }
+    // piece fantome
+    glColor3f(1, 1, 1);
+    if (!pieces.empty())
+    {
+        TetrisPiece lastPiece = pieces.back();
+        TetrisPiece saveLastPiece = lastPiece;
+        pieces.pop_back();
+
+        while (!testCollision(pieces, lastPiece))
+        {
+            lastPiece.y--;
+        }
+        lastPiece.y++;
+        for (const auto &point : lastPiece.matrix)
+        {
+            int *position = calculePositionPiece(lastPiece, &point - &lastPiece.matrix[0]);
+            glPushMatrix();
+            glTranslatef(position[0], position[1] + 0.025, position[2]);
+            glutWireCube(1.02);
+            glPopMatrix();
+        }
+        pieces.push_back(saveLastPiece);
     }
 
     glutSwapBuffers();
 }
+
 void keyboard(unsigned char key, int x, int y)
 {
     TetrisPiece &lastPiece = pieces.back();
