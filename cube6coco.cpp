@@ -109,7 +109,7 @@ int terrainDim[3][2] = {{-2, 3}, {-5, 6}, {-2, 2}};
 //int gameWidth = terrainDim[0][1]-terrainDim[0][0];
 //int gameHeight= terrainDim[2][1]-terrainDim[2][0];
 //int gameDepth= terrainDim[1][1]-terrainDim[1][0];
-int bufferCam=0;
+bool bufferCam=true;
 
 int *calculePositionPiece(TetrisPiece piece, int point)
 {
@@ -437,7 +437,7 @@ void display()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 
-    if(bufferCam%2==0){
+    if(bufferCam==true){
         gluLookAt(4,10, 4,
             (terrainDim[0][0]+terrainDim[0][1])/2, (terrainDim[1][0]+terrainDim[1][1])/2, (terrainDim[2][0]+terrainDim[2][1])/2,
             0, 1, 0);
@@ -495,7 +495,6 @@ void display()
     //int terrainDim[3][2] = {{-2, 3}, {-5, 6}, {-2, 2}};
     // Dessiner les arêtes de la zone de jeu
 
-    float offset = 0.5;
     glColor3f(1.0, 1.0, 1.0);
     glLineWidth(2.0);
     glBegin(GL_LINES);
@@ -505,7 +504,7 @@ void display()
     glLineWidth(2.0);
     glBegin(GL_LINES);
 
-    float terrainDimAffichage[3][2] = {{-2-0.5,3+0.5}, {-5-0.5, 6+0.5}, {-2-0.5, 2+0.5}};
+    double terrainDimAffichage[3][2] = {{terrainDim[0][0]-0.5,terrainDim[0][1]+0.5}, {terrainDim[1][0]-0.5, terrainDim[1][1]+0.5}, {terrainDim[2][0]-0.5, terrainDim[2][1]+0.5}};
 
     for (int x = 0; x <= 1; x++) {
         for (int y = 0; y <= 1; y++) {
@@ -695,7 +694,7 @@ void keyboard(unsigned char key, int x, int y)
         }
         break;
         case 'c':
-            bufferCam+=1;
+            bufferCam=!bufferCam;
         break;
     }
 
