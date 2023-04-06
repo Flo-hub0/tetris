@@ -529,8 +529,6 @@ void display()
     glEnd();
 
 
-
-
     glColor3f(0.6, 0.6, 0.6);
     if (!pieces.empty())
     {
@@ -553,7 +551,7 @@ void display()
             glPopMatrix();
         }
     }
-    // piece fantome
+    
     glColor3f(1, 1, 1);
     if (!pieces.empty())
     {
