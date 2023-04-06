@@ -105,7 +105,7 @@ std::vector<std::vector<std::vector<int>>> separerPiece(std::vector<std::vector<
 }
 // dimensions du terrain de jeu
 // xmin xmax ymin ymax zmin zmax
-int terrainDim[3][2] = {{-2, 3}, {-5, 6}, {-2, 2}};
+int terrainDim[3][2] = {{-2, 3}, {-5, 5}, {-2, 2}};
 //int gameWidth = terrainDim[0][1]-terrainDim[0][0];
 //int gameHeight= terrainDim[2][1]-terrainDim[2][0];
 //int gameDepth= terrainDim[1][1]-terrainDim[1][0];
@@ -129,7 +129,7 @@ int *calculePositionPiece(TetrisPiece piece, int point)
 
 bool testCollision(std::vector<TetrisPiece> pieces)
 {
-
+    //bord du terrain
     for (const auto &piece : pieces)
     {
         for (const auto &point : piece.matrix)
@@ -141,6 +141,7 @@ bool testCollision(std::vector<TetrisPiece> pieces)
             }
         }
     }
+    //autre pièce
     for (int i = 0; i < pieces.size(); i++)
     {
         for (int j = 0; j < pieces.size(); j++)
@@ -281,7 +282,7 @@ void createNewPiece(std::vector<TetrisPiece> &pieces)
 {
     TetrisPiece newPiece;
     newPiece.x = 0;
-    newPiece.y = 0;
+    newPiece.y = terrainDim[1][1];
     newPiece.z = 0;
     if (sacPiece.size() == 0)
     {
@@ -334,7 +335,7 @@ void createNewPiece(std::vector<TetrisPiece> &pieces)
         newPiece.colorB = 1.0;
         break;
     }
-    std::cout << newPiece.type << std::endl;
+    //std::cout << newPiece.type << std::endl;
     newPiece.rotationX = 0.0;
     newPiece.rotationZ = 0.0;
 
@@ -594,9 +595,6 @@ void keyboard(unsigned char key, int x, int y)
 
     switch (key)
     {
-    case 'p':
-        createNewPiece(pieces);
-        break;
     case 'z':
         if (pieces.empty())
         {
@@ -675,6 +673,7 @@ void keyboard(unsigned char key, int x, int y)
 
     case 'r':
         pieces.erase(pieces.begin(), pieces.end());
+        createNewPiece(pieces);
         break;
 
     case 'f':
@@ -767,7 +766,7 @@ int main(int argc, char **argv)
     glutSpecialFunc(specialKeyboard);
     glutReshapeFunc(reshape);
 
-
+    createNewPiece(pieces); //le jeu démarre avec une pièce active
     glutMainLoop();
     return 0;
 }
