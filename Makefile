@@ -1,22 +1,31 @@
 
+
 .SUFFIXES: .cpp
 
-TARGET         = tetris
-OBJECTS        = Field.o Piece.o Ipiece.o Jpiece.o Lpiece.o Opiece.o Spiece.o Tpiece.o cube3.o menu2.o playing_window.o Zpiece.o PieceFactory.o main.o
-SOURCES        = $(OBJECTS:.o=.cpp)
-OBJDIR         = obj
-SRCDIR         = src
+vpath %.cpp src
 
-CXX            = /opt/local/bin/g++
-CXXFLAGS       = -Wall -I. -I/opt/local/include -I/opt/local/include/gtk-4.0 -I/opt/local/include/glib-2.0 -I/opt/local/lib/glib-2.0/include -I/opt/local/include/cairo -I/opt/local/include/pango -I/opt/local//include/pango-1.0 -I/opt/local/include/harfbuzz -I/opt/local/include/gdk-pixbuf-2.0 -I/opt/local/include/graphene-1.0 -I/opt/local/lib/graphene-1.0/include
-LDFLAGS        =
-LIBS           =
+SRCDIR         := src
+OBJDIR         := build
 
-.cpp.o: $<
-	$(CXX) $(CPXXFLAGS) $(CXXFLAGS) -c $<
+TARGET         := tetris
+SOURCES        := $(addprefix $(SRCDIR)/,Field.cpp Piece.cpp Ipiece.cpp Jpiece.cpp Lpiece.cpp Opiece.cpp Spiece.cpp Tpiece.cpp Zpiece.cpp PieceFactory.cpp main.cpp)
+OBJECTS        := $(addprefix $(OBJDIR)/,Field.o Piece.o Ipiece.o Jpiece.o Lpiece.o Opiece.o Spiece.o Tpiece.o Zpiece.o PieceFactory.o main.o)
+
+CXX            := /opt/local/bin/g++
+CXXFLAGS       := -Wall -I$(SRCDIR)
+LDFLAGS        :=
+LIBS           :=
 
 $(TARGET): $(OBJECTS)
 	$(CXX) $(LDFLAGS) -o $@ $(OBJECTS) $(LIBS)
 
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(SRCDIR)/%.h
+	$(CXX) $(CPXXFLAGS) $(CXXFLAGS) -c -o $@ $<
+
+$(OBJDIR)/main.o: $(SRCDIR)/main.cpp
+	$(CXX) $(CPXXFLAGS) $(CXXFLAGS) -c -o $@ $<
+
+.PHONY: clean
+
 clean:
-	rm -f ${TARGET} $(OBJECTS) $(OBJECTS:.o=.h~) $(OBJECTS:.o=.cpp~) Makefile~
+	rm -f ${TARGET} $(OBJECTS) $(SOURCES:.cpp=.h~) $(SOURCES:.cpp=.cpp~) Makefile~
