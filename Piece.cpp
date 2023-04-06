@@ -34,6 +34,7 @@ Piece::ShapeName() const
 
 void
 Piece::ComputeFootprint()
+
 {
   assert(this->shape.size() > 3);
   auto p = this->shape[0];
