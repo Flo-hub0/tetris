@@ -362,7 +362,7 @@ void createNewPiece(std::vector<TetrisPiece> &pieces)
     pieces.push_back(newPiece);
     if (testCollision(pieces))
     {
-        std::cout << "game over" << std::endl; // impossible de faire spawn en respectant les collisions => FIN DE PARTIE
+        // std::cout << "game over" << std::endl; // impossible de faire spawn en respectant les collisions => FIN DE PARTIE
         pieces.erase(pieces.begin(), pieces.end() - 1);
         sacPiece = {0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6};
         sacPiece.erase(std::find(sacPiece.begin(), sacPiece.end(), newPiece.type));
@@ -740,7 +740,6 @@ void keyboard(unsigned char key, int x, int y)
         break;
     }
 
-    // Ajouter ici les touches pour déplacer et faire pivoter les pièces
     glutPostRedisplay();
 }
 
@@ -814,7 +813,7 @@ int main(int argc, char **argv)
     glutSpecialFunc(specialKeyboard);
     glutReshapeFunc(reshape);
 
-    createNewPiece(pieces); // le jeu démarre avec une pièce active
+    createNewPiece(pieces);
     glutMainLoop();
     return 0;
 }
