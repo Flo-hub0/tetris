@@ -1,5 +1,4 @@
-Auteur Corentin P et Charles R,
-Dans le cadre du projet d'IN204
+Auteur Corentin P et Charles R, dans le cadre du projet d'IN204
 
 Pour compiler et executer le programme il suffit de taper la commande suivante dans le terminal:
 
