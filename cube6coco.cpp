@@ -12,17 +12,16 @@
 struct TetrisPiece
 {
     int x, y, z;
-    int type; // on ne s'en sert pas en vrai
+    int type;
     float colorR, colorG, colorB;
     std::vector<std::vector<int>> matrix;
     int rotationX, rotationY, rotationZ;
 };
-// fonction qui calcule une piece si elle descendait tout en bas
 
 std::vector<TetrisPiece> pieces;
 
-std::vector<int> sacPiece = {0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6, 7, 7};
-std::vector<int> sacCouleur = {0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6};
+std::vector<int> sacPiece = {0, 1, 2, 3, 4, 5, 6, 7, 8};
+std::vector<int> sacCouleur = {0, 1, 2, 3, 4, 5, 6, 0};
 
 int Score = 0;
 int meilleurScore = 0;
@@ -79,11 +78,9 @@ int *calculePositionPiece(TetrisPiece piece, int point)
     int cosY = cos(piece.rotationY * M_PI / 180);
     int sinY = sin(piece.rotationY * M_PI / 180);
 
-    // std ::cout << piece.rotationX << " " << piece.rotationZ << std::endl;
     position[0] = piece.x + piece.matrix[point][0] * cosZ * cosY - piece.matrix[point][1] * sinZ * cosY + piece.matrix[point][2] * sinY;
     position[1] = piece.y + piece.matrix[point][0] * (cosZ * sinX * sinY + sinZ * cosX) + piece.matrix[point][1] * (cosZ * cosX - sinZ * sinX * sinY) - piece.matrix[point][2] * sinX * cosY;
     position[2] = piece.z + piece.matrix[point][0] * (sinZ * sinX - cosZ * cosX * sinY) + piece.matrix[point][1] * (cosX * sinY * sinZ + cosZ * sinX) + piece.matrix[point][2] * cosX * cosY;
-    // std::cout << position[0] << " " << position[1] << " " << position[2] << std::endl;
     return position;
 }
 
@@ -128,7 +125,6 @@ bool testCollision(std::vector<TetrisPiece> pieces)
 
 int32_t testPlanTermine(std::vector<TetrisPiece> &pieces)
 {
-    int nbligne = 0;
     int terrain[terrainDim[0][1] - terrainDim[0][0] + 1][terrainDim[1][1] - terrainDim[1][0] + 1][terrainDim[2][1] - terrainDim[2][0] + 1];
     for (int i = 0; i < terrainDim[0][1] - terrainDim[0][0] + 1; i++)
     {
@@ -163,7 +159,6 @@ int32_t testPlanTermine(std::vector<TetrisPiece> &pieces)
         }
         if (planTermine)
         {
-            nbligne++;
             for (int i = 0; i < pieces.size(); i++)
             {
                 bool pieceSupprimee = false;
@@ -197,12 +192,6 @@ int32_t testPlanTermine(std::vector<TetrisPiece> &pieces)
                     }
                 }
             }
-            // à suprr
-            if (testCollision(pieces))
-            {
-
-                std::cout << "error" << std::endl;
-            }
 
             for (int i = 0; i < pieces.size(); i++)
             {
@@ -221,7 +210,7 @@ int32_t testPlanTermine(std::vector<TetrisPiece> &pieces)
                     i--;
                 }
             }
-            return 1 + testPlanTermine(pieces);
+            return 1 + testPlanTermine(pieces) * 2; // 1 plan = 1 point, 2 plans = 3 points, 3 plans = 7 points, 4 plans = 15 points
         }
     }
     return 0;
@@ -244,8 +233,11 @@ void createNewPiece(std::vector<TetrisPiece> &pieces)
     newPiece.z = 0;
     if (sacPiece.size() == 0)
     {
-        sacPiece = {0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6};
-        sacCouleur = {0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6};
+        sacPiece = {0, 1, 2, 3, 4, 5, 6, 7, 8};
+    }
+    if (sacCouleur.size() == 0)
+    {
+        sacCouleur = {0, 1, 2, 3, 4, 5, 6};
     }
 
     int h = rand() % sacPiece.size();
@@ -293,8 +285,9 @@ void createNewPiece(std::vector<TetrisPiece> &pieces)
         newPiece.colorB = 1.0;
         break;
     }
-    // std::cout << newPiece.type << std::endl;
+
     newPiece.rotationX = 0.0;
+    newPiece.rotationY = 0.0;
     newPiece.rotationZ = 0.0;
 
     switch (newPiece.type)
@@ -348,12 +341,28 @@ void createNewPiece(std::vector<TetrisPiece> &pieces)
             {1, 0, 0},
             {1, 0, -1}};
         break;
+    case 7: // inventé
+        newPiece.matrix = {
+            {0, 0, 0},
+            {0, -1, 0},
+            {1, 0, 0},
+            {-1, 0, 0},
+            {0, 0, 1},
+            {0, 0, -1}};
+        break;
+    case 8: // inventé
+        newPiece.matrix = {
+            {0, 0, 0},
+            {1, 0, 0},
+            {1, -1, 0},
+            {-1, 0, 0},
+            {1, 0, 1}};
     }
 
     pieces.push_back(newPiece);
     if (testCollision(pieces))
     {
-        std::cout << "game over" << std::endl; // impossible de faire spawn en respectant les collisions => FINB DE PARTIE
+        std::cout << "game over" << std::endl; // impossible de faire spawn en respectant les collisions => FIN DE PARTIE
         pieces.erase(pieces.begin(), pieces.end() - 1);
         sacPiece = {0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6};
         sacPiece.erase(std::find(sacPiece.begin(), sacPiece.end(), newPiece.type));
@@ -537,7 +546,7 @@ void display()
             }
         }
     }
-
+    // piece fantome
     glColor3f(1, 1, 1);
     if (!pieces.empty())
     {
@@ -563,19 +572,18 @@ void display()
     // afficher le score
     glMatrixMode(GL_PROJECTION);
     glPushMatrix();
-    glLoadIdentity();
+    glLoadIdentity(); // en bas à gauche
     gluOrtho2D(0, 800, 0, 600);
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
     glLoadIdentity();
-    glColor3f(1, 1, 1);
-    glRasterPos2i(700, 550);
+    glRasterPos2i(10, 250);
     std::string scoreString = "Score : " + std::to_string(Score);
     for (int i = 0; i < scoreString.length(); i++)
     {
         glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, scoreString[i]);
     }
-    glRasterPos2i(700, 500);
+    glRasterPos2i(10, 200);
     std::string meilleurScoreString = "Meilleur score : " + std::to_string(meilleurScore);
     for (int i = 0; i < meilleurScoreString.length(); i++)
     {
