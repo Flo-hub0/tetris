@@ -14,7 +14,7 @@ struct TetrisPiece
     int type; // on ne s'en sert pas en vrai
     float colorR, colorG, colorB;
     std::vector<std::vector<int>> matrix;
-    int rotationX, rotationZ;
+    int rotationX, rotationY, rotationZ;
 };
 // fonction qui calcule une piece si elle descendait tout en bas
 
@@ -68,6 +68,7 @@ std::vector<std::vector<int>> genererChiffre(int chiffre)
     return listePoints;
 }
 int Score = 0;
+
 double distance(std::vector<int> a, std::vector<int> b)
 {
     double dist = 0;
@@ -103,7 +104,13 @@ std::vector<std::vector<std::vector<int>>> separerPiece(std::vector<std::vector<
     return groups;
 }
 // dimensions du terrain de jeu
-int terrainDim[3][2] = {{-2, 3}, {-5, 6}, {-2, 2}};
+// xmin xmax ymin ymax zmin zmax
+int terrainDim[3][2] = {{-2, 3}, {-5, 5}, {-2, 2}};
+// int gameWidth = terrainDim[0][1]-terrainDim[0][0];
+// int gameHeight= terrainDim[2][1]-terrainDim[2][0];
+// int gameDepth= terrainDim[1][1]-terrainDim[1][0];
+bool bufferCam = true;
+
 int *calculePositionPiece(TetrisPiece piece, int point)
 {
     int *position = new int[3];
@@ -111,18 +118,20 @@ int *calculePositionPiece(TetrisPiece piece, int point)
     int sinX = sin(piece.rotationX * M_PI / 180);
     int cosZ = cos(piece.rotationZ * M_PI / 180);
     int sinZ = sin(piece.rotationZ * M_PI / 180);
+    int cosY = cos(piece.rotationY * M_PI / 180);
+    int sinY = sin(piece.rotationY * M_PI / 180);
 
     // std ::cout << piece.rotationX << " " << piece.rotationZ << std::endl;
-    position[0] = piece.x + piece.matrix[point][0] * cosZ - piece.matrix[point][1] * sinZ;
-    position[1] = piece.y + piece.matrix[point][0] * sinZ * cosX + piece.matrix[point][1] * cosX * cosZ - piece.matrix[point][2] * sinX;
-    position[2] = piece.z + piece.matrix[point][0] * sinX * sinZ + piece.matrix[point][1] * sinX * cosZ + piece.matrix[point][2] * cosX;
+    position[0] = piece.x + piece.matrix[point][0] * cosZ * cosY - piece.matrix[point][1] * sinZ * cosY + piece.matrix[point][2] * sinY;
+    position[1] = piece.y + piece.matrix[point][0] * (cosZ * sinX * sinY + sinZ * cosX) + piece.matrix[point][1] * (cosZ * cosX - sinZ * sinX * sinY) - piece.matrix[point][2] * sinX * cosY;
+    position[2] = piece.z + piece.matrix[point][0] * (sinZ * sinX - cosZ * cosX * sinY) + piece.matrix[point][1] * (cosX * sinY * sinZ + cosZ * sinX) + piece.matrix[point][2] * cosX * cosY;
     // std::cout << position[0] << " " << position[1] << " " << position[2] << std::endl;
     return position;
 }
 
 bool testCollision(std::vector<TetrisPiece> pieces)
 {
-
+    // bord du terrain
     for (const auto &piece : pieces)
     {
         for (const auto &point : piece.matrix)
@@ -134,24 +143,23 @@ bool testCollision(std::vector<TetrisPiece> pieces)
             }
         }
     }
-    for (int i = 0; i < pieces.size(); i++)
+    // autre pièce
+    for (int i = 0; i < pieces.size() - 1; i++)
     {
-        for (int j = 0; j < pieces.size(); j++)
+        for (int j = i + 1; j < pieces.size(); j++)
         {
-            if (i != j)
+
+            for (const auto &point : pieces[i].matrix)
             {
-                for (const auto &point : pieces[i].matrix)
+                for (const auto &point2 : pieces[j].matrix)
                 {
-                    for (const auto &point2 : pieces[j].matrix)
+                    int *position = calculePositionPiece(pieces[i], &point - &pieces[i].matrix[0]);
+
+                    int *position2 = calculePositionPiece(pieces[j], &point2 - &pieces[j].matrix[0]);
+
+                    if (position[0] == position2[0] && position[1] == position2[1] && position[2] == position2[2])
                     {
-                        int *position = calculePositionPiece(pieces[i], &point - &pieces[i].matrix[0]);
-
-                        int *position2 = calculePositionPiece(pieces[j], &point2 - &pieces[j].matrix[0]);
-
-                        if (position[0] == position2[0] && position[1] == position2[1] && position[2] == position2[2])
-                        {
-                            return true;
-                        }
+                        return true;
                     }
                 }
             }
@@ -274,7 +282,7 @@ void createNewPiece(std::vector<TetrisPiece> &pieces)
 {
     TetrisPiece newPiece;
     newPiece.x = 0;
-    newPiece.y = 0;
+    newPiece.y = terrainDim[1][1] - 3;
     newPiece.z = 0;
     if (sacPiece.size() == 0)
     {
@@ -327,7 +335,7 @@ void createNewPiece(std::vector<TetrisPiece> &pieces)
         newPiece.colorB = 1.0;
         break;
     }
-    std::cout << newPiece.type << std::endl;
+    // std::cout << newPiece.type << std::endl;
     newPiece.rotationX = 0.0;
     newPiece.rotationZ = 0.0;
 
@@ -393,6 +401,7 @@ void createNewPiece(std::vector<TetrisPiece> &pieces)
         sacPiece.erase(std::find(sacPiece.begin(), sacPiece.end(), newPiece.type));
         sacCouleur = {0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6};
         sacCouleur.erase(std::find(sacCouleur.begin(), sacCouleur.end(), color));
+        Score = 0;
     }
 }
 
@@ -430,7 +439,24 @@ void display()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 
-    gluLookAt(4, 10, 4, -2, -10, -2, 0, 1, 0);
+    if (bufferCam == true)
+    {
+        gluLookAt(4, 10, 4,
+                  (terrainDim[0][0] + terrainDim[0][1]) / 2, (terrainDim[1][0] + terrainDim[1][1]) / 2, (terrainDim[2][0] + terrainDim[2][1]) / 2,
+                  0, 1, 0);
+    }
+    else
+    {
+        gluLookAt(-4, 10, -4,
+                  (terrainDim[0][0] + terrainDim[0][1]) / 2, (terrainDim[1][0] + terrainDim[1][1]) / 2, (terrainDim[2][0] + terrainDim[2][1]) / 2,
+                  0, 1, 0);
+    }
+
+    /*
+    gluLookAt(4,10, 4,
+     -2, -10, -2,
+      0, 1, 0);
+    */
 
     for (const auto &piece : pieces)
     {
@@ -453,7 +479,6 @@ void display()
             glPopMatrix();
         }
     }
-
     glColor3f(0.2, 0.2, 0.2); // sol
     for (int i = terrainDim[0][0]; i <= terrainDim[0][1]; i++)
     {
@@ -466,29 +491,91 @@ void display()
             glPopMatrix();
         }
     }
+
+    // Arrêtes
+    //  dimensions du terrain de jeu
+    //  xmin xmax ymin ymax zmin zmax
+    // int terrainDim[3][2] = {{-2, 3}, {-5, 6}, {-2, 2}};
+    //  Dessiner les arêtes de la zone de jeu
+
+    glColor3f(1.0, 1.0, 1.0);
+    glLineWidth(2.0);
+    glBegin(GL_LINES);
+
+    glColor3f(1.0, 1.0, 1.0);
+    glLineWidth(2.0);
+    glBegin(GL_LINES);
+
+    double terrainDimAffichage[3][2] = {{terrainDim[0][0] - 0.5, terrainDim[0][1] + 0.5}, {terrainDim[1][0] - 0.5, terrainDim[1][1] + 0.5}, {terrainDim[2][0] - 0.5, terrainDim[2][1] + 0.5}};
+
+    for (int x = 0; x <= 1; x++)
+    {
+        for (int y = 0; y <= 1; y++)
+        {
+            for (int z = 0; z <= 1; z++)
+            {
+                if (x < 1)
+                {
+                    glVertex3f(terrainDimAffichage[0][x], terrainDimAffichage[1][y], terrainDimAffichage[2][z]);
+                    glVertex3f(terrainDimAffichage[0][x + 1], terrainDimAffichage[1][y], terrainDimAffichage[2][z]);
+                }
+                if (y < 1)
+                {
+                    glVertex3f(terrainDimAffichage[0][x], terrainDimAffichage[1][y], terrainDimAffichage[2][z]);
+                    glVertex3f(terrainDimAffichage[0][x], terrainDimAffichage[1][y + 1], terrainDimAffichage[2][z]);
+                }
+                if (z < 1)
+                {
+                    glVertex3f(terrainDimAffichage[0][x], terrainDimAffichage[1][y], terrainDimAffichage[2][z]);
+                    glVertex3f(terrainDimAffichage[0][x], terrainDimAffichage[1][y], terrainDimAffichage[2][z + 1]);
+                }
+            }
+        }
+    }
+
+    glEnd();
+
     glColor3f(0.6, 0.6, 0.6);
     if (!pieces.empty())
     {
+
         TetrisPiece &lastPiece = pieces.back();
         for (const auto &point : lastPiece.matrix)
         {
 
             int *position = calculePositionPiece(lastPiece, &point - &lastPiece.matrix[0]);
             glPushMatrix();
-            glTranslatef(position[0], terrainDim[1][0] - 1, position[2]);
-            glutSolidCube(0.98);
-            glPopMatrix();
-            glPushMatrix();
-            glTranslatef(position[0], position[1], terrainDim[2][0] - 1);
-            glutSolidCube(0.98);
-            glPopMatrix();
-            glPushMatrix();
-            glTranslatef(terrainDim[0][0] - 1, position[1], position[2]);
-            glutSolidCube(0.98);
-            glPopMatrix();
+            if (bufferCam)
+            {
+                glTranslatef(position[0], terrainDim[1][0] - 1, position[2]);
+                glutSolidCube(0.98);
+                glPopMatrix();
+                glPushMatrix();
+                glTranslatef(position[0], position[1], terrainDim[2][0] - 1);
+                glutSolidCube(0.98);
+                glPopMatrix();
+                glPushMatrix();
+                glTranslatef(terrainDim[0][0] - 1, position[1], position[2]);
+                glutSolidCube(0.98);
+                glPopMatrix();
+            }
+            else
+            {
+                glTranslatef(position[0], terrainDim[1][0] - 1, position[2]);
+                glutSolidCube(0.98);
+                glPopMatrix();
+                glPushMatrix();
+                glTranslatef(position[0], position[1], terrainDim[2][1] + 1);
+                glutSolidCube(0.98);
+                glPopMatrix();
+                glPushMatrix();
+                glTranslatef(terrainDim[0][1] + 1, position[1], position[2]);
+                glutSolidCube(0.98);
+                glPopMatrix();
+            }
         }
     }
-    // piece fantome
+
     glColor3f(1, 1, 1);
     if (!pieces.empty())
     {
@@ -530,9 +617,6 @@ void keyboard(unsigned char key, int x, int y)
 
     switch (key)
     {
-    case 'p':
-        createNewPiece(pieces);
-        break;
     case 'z':
         if (pieces.empty())
         {
@@ -547,6 +631,7 @@ void keyboard(unsigned char key, int x, int y)
             }
         }
         break;
+
     case 's':
         if (pieces.empty())
         {
@@ -561,6 +646,7 @@ void keyboard(unsigned char key, int x, int y)
             }
         }
         break;
+
     case 'q':
         if (pieces.empty())
         {
@@ -575,6 +661,7 @@ void keyboard(unsigned char key, int x, int y)
             }
         }
         break;
+
     case 'd':
         if (pieces.empty())
         {
@@ -589,6 +676,36 @@ void keyboard(unsigned char key, int x, int y)
             }
         }
         break;
+    case 'a':
+        if (pieces.empty())
+        {
+            return;
+        }
+        else
+        {
+            lastPiece.rotationY -= 90;
+            if (testCollision(pieces))
+            {
+                lastPiece.rotationY += 90;
+            }
+        }
+        break;
+
+    case 'e':
+        if (pieces.empty())
+        {
+            return;
+        }
+        else
+        {
+            lastPiece.rotationY += 90;
+            if (testCollision(pieces))
+            {
+                lastPiece.rotationY -= 90;
+            }
+        }
+        break;
+
     case 32:
         if (pieces.empty())
         {
@@ -605,12 +722,14 @@ void keyboard(unsigned char key, int x, int y)
             }
         }
         break;
-    case 27: // ASCII code for escape
+
+    case 27:
         exit(0);
         break;
 
     case 'r':
         pieces.erase(pieces.begin(), pieces.end());
+        createNewPiece(pieces);
         break;
 
     case 'f':
@@ -629,8 +748,13 @@ void keyboard(unsigned char key, int x, int y)
             createNewPiece(pieces);
         }
         break;
+
+    case 'c':
+        bufferCam = !bufferCam;
+        break;
     }
 
+    // Ajouter ici les touches pour déplacer et faire pivoter les pièces
     glutPostRedisplay();
 }
 
@@ -640,37 +764,42 @@ void specialKeyboard(int key, int x, int y)
     {
         return;
     }
+    int reverse = 1;
+    if (!bufferCam)
+    {
+        reverse = -1;
+    }
 
     TetrisPiece &lastPiece = pieces.back();
 
     switch (key)
     {
     case GLUT_KEY_UP:
-        lastPiece.z -= 1;
+        lastPiece.z -= 1 * reverse;
         if (testCollision(pieces))
         {
-            lastPiece.z += 1;
+            lastPiece.z += 1 * reverse;
         }
         break;
     case GLUT_KEY_DOWN:
-        lastPiece.z += 1;
+        lastPiece.z += 1 * reverse;
         if (testCollision(pieces))
         {
-            lastPiece.z -= 1;
+            lastPiece.z -= 1 * reverse;
         }
         break;
     case GLUT_KEY_LEFT:
-        lastPiece.x -= 1;
+        lastPiece.x -= 1 * reverse;
         if (testCollision(pieces))
         {
-            lastPiece.x += 1;
+            lastPiece.x += 1 * reverse;
         }
         break;
     case GLUT_KEY_RIGHT:
-        lastPiece.x += 1;
+        lastPiece.x += 1 * reverse;
         if (testCollision(pieces))
         {
-            lastPiece.x -= 1;
+            lastPiece.x -= 1 * reverse;
         }
         break;
     }
@@ -699,6 +828,7 @@ int main(int argc, char **argv)
     glutSpecialFunc(specialKeyboard);
     glutReshapeFunc(reshape);
 
+    createNewPiece(pieces); // le jeu démarre avec une pièce active
     glutMainLoop();
     return 0;
 }
