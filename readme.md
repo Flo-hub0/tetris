@@ -11,6 +11,7 @@ Pour simplement executer le programme il suffit de taper la commande suivante da
 
 
 Commandes :
+
     'z' et 's' : rotation autour de l'axe X
     
     'q' et 'd' : rotation autour de l'axe Z
