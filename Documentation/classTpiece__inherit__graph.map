@@ -1,4 +1,0 @@
-<map id="Tpiece" name="Tpiece">
-<area shape="rect" id="node1" title="Tpiece est la classe pour représenter la pièce T du jeu." alt="" coords="5,80,67,107"/>
-<area shape="rect" id="node2" href="$classPiece.html" title="Piece est une classe générique pour représenter une pièce du jeu de tetris." alt="" coords="9,5,63,32"/>
-</map>

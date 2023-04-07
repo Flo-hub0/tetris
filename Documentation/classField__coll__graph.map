@@ -1,5 +1,0 @@
-<map id="Field" name="Field">
-<area shape="rect" id="node1" title="Field est une classe pour représenter le plateau du jeu de tetris." alt="" coords="58,95,109,121"/>
-<area shape="rect" id="node2" href="$classPiece.html" title="Piece est une classe générique pour représenter une pièce du jeu de tetris." alt="" coords="5,5,60,32"/>
-<area shape="rect" id="node3" href="$classPieceFactory.html" title="PieceFactory est une usine à pièces pour le jeu de tetris." alt="" coords="85,5,183,32"/>
-</map>
